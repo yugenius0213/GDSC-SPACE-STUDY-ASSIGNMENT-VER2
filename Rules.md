@@ -2,12 +2,16 @@
 
 #### 모든 작업내용은 다음과 같은 순서를 통해 계획과 수행이 이루어집니다.
 
-1. GitHub Project에 작업 항목을 추가합니다.
-2. 추가한 항목의 Title, Content를 아래 규칛을 참고해 작성한 뒤, `Convert to Issue` 메뉴를 이용해 `GDSC-CAU/GDSC-SPACE` 레포지토리의 Issue로 등록합니다.
-3. Fork된 Repository에서 해당 작업에 대한 Branch를 분리하여 작업을 진행합니다. 이 때, Branch 이름과 Commit 메시지의 규칙은 아래 내용을 따릅니다.
-4. 작업이 완료되면, `GDSC-CAU/GDSC-SPACE` 레포지토리로 PR을 등록합니다. 마찬가지로 아래 규칙을 참고합니다.
-5. Code-Review 이후, 변경 요청사항이 있다면 기존 Branch로 다시 `checkout`하여 작업을 마무리합니다.
-6. 마지막에 Approve한 Reviewer가 해당 PR을 Main Branch에 Merge 합니다.
+1. Issue 작성 후 작업을 시작합니다. Issue 작성법은 아래와 같습니다.
+
+- GitHub Project에 작업 항목을 추가합니다.
+- 추가한 항목의 Title, Content를 아래 규칛을 참고해 작성한 뒤, `Convert to Issue` 메뉴를 이용해 `GDSC-CAU/GDSC-SPACE-STUDY-ASSIGNMENT-VER2` 레포지토리의 Issue로 등록합니다.
+  or
+- Fork된 Repository에서 해당 작업에 대한 Branch를 분리하여 작업을 진행합니다. 이 때, Branch 이름과 Commit 메시지의 규칙은 아래 내용을 따릅니다.
+
+2. 작업이 완료되면, `GDSC-CAU/GDSC-SPACE-STUDY-ASSIGNMENT-VER2` 레포지토리로 PR을 등록합니다. 마찬가지로 아래 규칙을 참고합니다.
+3. Code-Review 이후, 변경 요청사항이 있다면 기존 Branch로 다시 `checkout`하여 작업을 마무리합니다.
+4. 마지막에 Approve한 Reviewer가 해당 PR을 Main Branch에 Merge 합니다.
 
 ---
 
