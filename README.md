@@ -14,7 +14,7 @@
 - 김희정
 - 김태양
 - 송정현
-- 정예원
+- [정예원](https://github.com/ye-one222)
 - 김소원
 
 ## 📚 스터디 방식
@@ -26,7 +26,7 @@
 
 ## ⚒️ 기술 스택
 
-- React(^18.3.1)
-- TypeScript(^5.7.2)
-- Vite(^4.5.5)
-- Tailwind CSS(^3.4.17) + Tailwindest
+- `React`(^18.3.1)
+- `TypeScript`(^5.7.2)
+- `Vite`(^4.5.5)
+- `Tailwind CSS`(^3.4.17) + `Tailwindest`
