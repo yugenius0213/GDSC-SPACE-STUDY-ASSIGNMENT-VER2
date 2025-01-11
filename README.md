@@ -11,7 +11,7 @@
 ## 👥  참여인원
 
 - [손유진](https://github.com/yugenius0213)
-- 김희정
+- [김희정](https://github.com/heejung0)
 - 김태양
 - 송정현
 - [정예원](https://github.com/ye-one222)
