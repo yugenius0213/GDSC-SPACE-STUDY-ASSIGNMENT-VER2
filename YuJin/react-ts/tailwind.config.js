@@ -10,6 +10,8 @@ export default {
                     lightgray: '#F3F4F6',
                     green: '#059669',
                     lightgreen: '#D1FAE5',
+                    blue: '#2563EB',
+                    lightblue: '#DBEAFE',
                 },
             },
         },
