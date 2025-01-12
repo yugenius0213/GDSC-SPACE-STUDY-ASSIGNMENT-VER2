@@ -10,9 +10,12 @@ export default function DiaryHomePage() {
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-row gap-1">
                         {emotionEntries.map((entry, index) => (
-                            <div className="flex bg-gray-400 px-2 py-0.5 items-center rounded-lg" key={index}>
+                            <button
+                                className="flex bg-primary-lightgray text-primary-gray px-2 items-center justify-center rounded-lg"
+                                key={index}
+                            >
                                 {entry.emotion}
-                            </div>
+                            </button>
                         ))}
                     </div>
                     <div className="flex flex-row gap-1">
