@@ -35,6 +35,10 @@ function DiaryWriter() {
                     ))}
                 </div>
             </div>
+            <textarea
+                className="w-full focus:border focus:rounded-lg p-2 focus:outline-none "
+                placeholder="오늘 당신의 하루는 어땠나요?"
+            ></textarea>
         </div>
     )
 }
