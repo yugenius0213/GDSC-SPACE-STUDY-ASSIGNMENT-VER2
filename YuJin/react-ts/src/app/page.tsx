@@ -8,9 +8,12 @@ function DiaryWriter() {
         weather: weather,
     }))
     return (
-        <div className="w-full border-2 border-bg-gray px-4 rounded-lg">
-            <div className="py-8">제목을 적어보세요</div>
-            <div className="flex flex-col gap-2">
+        <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col">
+            <input
+                className="w-full p-2 text-2xl hover:border hover:rounded-lg focus:outline-none mt-4"
+                placeholder="제목을 적어보세요"
+            ></input>
+            <div className="flex flex-col gap-2 py-8">
                 <div className="flex flex-row gap-1">
                     {emotionEntries.map((entry, index) => (
                         <button
