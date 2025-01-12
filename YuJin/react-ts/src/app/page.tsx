@@ -39,6 +39,13 @@ function DiaryWriter() {
                 className="w-full focus:border focus:rounded-lg p-2 focus:outline-none "
                 placeholder="오늘 당신의 하루는 어땠나요?"
             ></textarea>
+
+            <button className="w-full bg-primary-lightgray rounded-lg py-2 text-lg text-primary-gray">
+                일기를 더 자세히 적어볼까요?
+            </button>
+            <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
+                일기를 저장해 보아요
+            </button>
         </div>
     )
 }
