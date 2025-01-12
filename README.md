@@ -11,11 +11,11 @@
 ## 👥  참여인원
 
 - [손유진](https://github.com/yugenius0213)
-- 김희정
-- 김태양
-- 송정현
+- [김희정](https://github.com/heejung0)
+- [김태양](https://github.com/chae1xxlos)
+- [송정현](https://github.com/katie424)
 - [정예원](https://github.com/ye-one222)
-- 김소원
+- [김소원](https://github.com/gomx3)
 
 ## 📚 스터디 방식
 
