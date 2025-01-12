@@ -49,11 +49,41 @@ function DiaryWriter() {
         </div>
     )
 }
+function DiaryViewer() {
+    return (
+        <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col">
+            <div className="text-xl text-primary-green text-bold mt-4">기록된 일기</div>
+            <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto">
+                <div className="border rounded-lg p-3 flex flex-col gap-2 ">
+                    <div className="text-lg">ㅓㅏㅗㅓㅏ</div>
+                    <div className="flex flex-row justify-between">
+                        <div className="text-sm text-primary-gray">2024.12.17. </div>
+                        <div className="flex flex-row">
+                            <div className="rounded-full border w-6 h-6 flex items-center justify-center">🥲</div>
+                            <div className="rounded-full border w-6 h-6 flex items-center justify-center">🥲</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border rounded-lg p-3 flex flex-col gap-2">
+                    <div className="text-lg">ㅓㅏㅗㅓㅏ</div>
+                    <div className="flex flex-row justify-between">
+                        <div className="text-sm text-primary-gray">2024.12.17. </div>
+                        <div className="flex flex-row">
+                            <div className="rounded-full border w-6 h-6 flex items-center justify-center">🥲</div>
+                            <div className="rounded-full border w-6 h-6 flex items-center justify-center">🥲</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 export default function DiaryHomePage() {
     return (
         <div className="flex flex-col gap-10 items-center justify-center">
             <DiaryWriter />
-            <div className="w-full border-2 border-bg-gray px-4 rounded-lg">기록된 일기</div>
+            <DiaryViewer />
         </div>
     )
 }
