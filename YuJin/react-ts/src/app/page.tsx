@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 function DiaryWriter() {
     const emotions: string[] = ['bad', 'soso', 'good', 'great', 'awesome']
     const emotionEntries = emotions.map((emotion) => ({
@@ -7,11 +9,24 @@ function DiaryWriter() {
     const weatherEntries = weather.map((weather) => ({
         weather: weather,
     }))
+    const [isValid, setIsValid] = useState(false)
+    const [title, setTitle] = useState('')
+    const [emotionClicked, setEmotionClicked] = useState('')
+    const [weatherClicked, setWeatherClicked] = useState('')
+    const [content, setContent] = useState('')
+    useEffect(() => {
+        const isTitleValid = title.length > 2
+        const isContentValid = content.length > 5
+        const isEmotionClicked = emotionClicked != ''
+        const isWeatherClicked = weatherClicked != ''
+        setIsValid(isTitleValid && isContentValid && isEmotionClicked && isWeatherClicked)
+    }, [title, emotionClicked, weatherClicked, content])
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3">
             <input
                 className="w-full p-2 text-2xl hover:border hover:rounded-lg focus:outline-none mt-4"
                 placeholder="제목을 적어보세요"
+                onChange={(e) => setTitle(e.target.value)}
             ></input>
             <div className="flex flex-col gap-2 py-8">
                 <div className="flex flex-row gap-1">
@@ -19,6 +34,7 @@ function DiaryWriter() {
                         <button
                             className="flex bg-primary-lightgray text-primary-gray px-2 items-center justify-center rounded-lg"
                             key={index}
+                            onClick={() => setEmotionClicked(entry.emotion)}
                         >
                             {entry.emotion}
                         </button>
@@ -29,6 +45,7 @@ function DiaryWriter() {
                         <button
                             className="flex bg-primary-lightgray text-primary-gray px-2 items-center justify-center rounded-lg"
                             key={index}
+                            onClick={() => setWeatherClicked(entry.weather)}
                         >
                             {entry.weather}
                         </button>
@@ -38,14 +55,17 @@ function DiaryWriter() {
             <textarea
                 className="w-full h-full focus:border focus:rounded-lg p-2 focus:outline-none "
                 placeholder="오늘 당신의 하루는 어땠나요?"
+                onChange={(e) => setContent(e.target.value)}
             ></textarea>
-
-            <button className="w-full bg-primary-lightgray rounded-lg py-2 text-lg text-primary-gray">
-                일기를 더 자세히 적어볼까요?
-            </button>
-            <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
-                일기를 저장해 보아요
-            </button>
+            {isValid ? (
+                <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
+                    일기를 저장해 보아요
+                </button>
+            ) : (
+                <button className="w-full bg-primary-lightgray rounded-lg py-2 text-lg text-primary-gray">
+                    일기를 더 자세히 적어볼까요?
+                </button>
+            )}
         </div>
     )
 }
