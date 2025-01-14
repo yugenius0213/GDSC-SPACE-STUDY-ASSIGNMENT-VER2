@@ -1,26 +1,40 @@
 import { useEffect, useState } from 'react'
+import { updateDiaryStorage } from '../hooks/useLocalStorage'
+import { Diary } from '../interface/diary'
 
 function DiaryWriter() {
-    const emotions: string[] = ['bad', 'soso', 'good', 'great', 'awesome']
+    const emotions: ('bad' | 'soso' | 'good' | 'great' | 'awesome')[] = ['bad', 'soso', 'good', 'great', 'awesome']
     const emotionEntries = emotions.map((emotion) => ({
         emotion: emotion,
     }))
-    const weather: string[] = ['sunny', 'cloud', 'rain', 'snow']
+    const weather: ('sunny' | 'cloud' | 'rain' | 'snow')[] = ['sunny', 'cloud', 'rain', 'snow']
     const weatherEntries = weather.map((weather) => ({
         weather: weather,
     }))
     const [isValid, setIsValid] = useState(false)
     const [title, setTitle] = useState('')
-    const [emotionClicked, setEmotionClicked] = useState('')
-    const [weatherClicked, setWeatherClicked] = useState('')
+    const [emotionClicked, setEmotionClicked] = useState<Diary['emotion'] | undefined>()
+    const [weatherClicked, setWeatherClicked] = useState<Diary['weather'] | undefined>()
     const [content, setContent] = useState('')
     useEffect(() => {
         const isTitleValid = title.length > 2
         const isContentValid = content.length > 5
-        const isEmotionClicked = emotionClicked != ''
-        const isWeatherClicked = weatherClicked != ''
+        const isEmotionClicked = emotionClicked != undefined
+        const isWeatherClicked = weatherClicked != undefined
         setIsValid(isTitleValid && isContentValid && isEmotionClicked && isWeatherClicked)
     }, [title, emotionClicked, weatherClicked, content])
+
+    const add = updateDiaryStorage()
+    const saveDiary = () => {
+        add({
+            id: window.crypto.randomUUID(),
+            title: title,
+            content: content,
+            date: new Date(),
+            emotion: emotionClicked!,
+            weather: weatherClicked!,
+        })
+    }
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3">
             <input
@@ -57,8 +71,12 @@ function DiaryWriter() {
                 placeholder="오늘 당신의 하루는 어땠나요?"
                 onChange={(e) => setContent(e.target.value)}
             ></textarea>
+
             {isValid ? (
-                <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
+                <button
+                    className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green"
+                    onClick={saveDiary}
+                >
                     일기를 저장해 보아요
                 </button>
             ) : (
