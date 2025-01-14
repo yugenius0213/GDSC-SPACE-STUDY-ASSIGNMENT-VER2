@@ -4,6 +4,15 @@ import { Diary } from '../interface/diary'
 import { useDiaryValue } from '../provider/Diary'
 import { Link } from 'react-router-dom'
 import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
+import { minContentLength, minTitleLength } from './constants/contraints'
+import {
+    DIARY_CONTENT_PLACEHOLDER,
+    DIARY_LIST_TITLE,
+    DIARY_TITLE_PLACEHOLDER,
+    INVALID_SAVE_BUTTON_TEXT,
+    VALID_SAVE_BUTTON_TEXT,
+    VIEW_EMOTIONS_BUTTON_TEXT,
+} from './constants/diaryInputs'
 
 function DiaryWriter() {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
@@ -16,7 +25,10 @@ function DiaryWriter() {
 
     useEffect(() => {
         const condition =
-            title.length <= 2 || content.length <= 5 || emotionClicked == undefined || weatherClicked == undefined
+            title.length <= minTitleLength ||
+            content.length <= minContentLength ||
+            emotionClicked == undefined ||
+            weatherClicked == undefined
         setIsValid(!condition)
     }, [title, emotionClicked, weatherClicked, content])
 
@@ -47,7 +59,7 @@ function DiaryWriter() {
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3">
             <input
                 className="w-full p-2 text-2xl hover:border hover:rounded-lg focus:outline-none mt-4"
-                placeholder="제목을 적어보세요"
+                placeholder={DIARY_TITLE_PLACEHOLDER}
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
             ></input>
@@ -77,7 +89,7 @@ function DiaryWriter() {
             </div>
             <textarea
                 className="w-full h-full focus:border focus:rounded-lg p-2 focus:outline-none mb-4 "
-                placeholder="오늘 당신의 하루는 어땠나요?"
+                placeholder={DIARY_CONTENT_PLACEHOLDER}
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
             ></textarea>
@@ -86,7 +98,7 @@ function DiaryWriter() {
                 className={`w-full ${isValid ? 'bg-primary-lightgreen text-primary-green' : 'bg-primary-lightgray text-primary-gray'} rounded-lg py-2 text-lg `}
                 onClick={saveDiary}
             >
-                {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
+                {isValid ? VALID_SAVE_BUTTON_TEXT : INVALID_SAVE_BUTTON_TEXT}
             </button>
         </div>
     )
@@ -96,7 +108,7 @@ function DiaryViewer() {
     const diaryList = useDiaryValue()
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3 flex justify-between">
-            <div className="text-xl text-primary-green text-bold mt-4">기록된 일기</div>
+            <div className="text-xl text-primary-green text-bold mt-4">{DIARY_LIST_TITLE}</div>
             <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto h-full justify-center ">
                 {diaryList.map((diary, index) => (
                     <DiaryViewerBox diary={diary} key={index} />
@@ -104,7 +116,7 @@ function DiaryViewer() {
             </div>
             <Link to="/emotions">
                 <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
-                    감정 모아보기
+                    {VIEW_EMOTIONS_BUTTON_TEXT}
                 </button>
             </Link>
         </div>
