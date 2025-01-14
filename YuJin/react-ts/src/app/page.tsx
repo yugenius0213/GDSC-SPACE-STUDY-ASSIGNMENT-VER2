@@ -34,7 +34,15 @@ function DiaryWriter() {
             emotion: emotionClicked!,
             weather: weatherClicked!,
         })
+
+        // reset()
     }
+    // const reset = () => {
+    //     setTitle('')
+    //     setContent('')
+    //     setEmotionClicked(undefined)
+    //     setWeatherClicked(undefined)
+    // }
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3">
             <input
@@ -46,7 +54,7 @@ function DiaryWriter() {
                 <div className="flex flex-row gap-1">
                     {emotionEntries.map((entry, index) => (
                         <button
-                            className="flex bg-primary-lightgray text-primary-gray px-2 items-center justify-center rounded-lg"
+                            className={`flex ${emotionClicked == entry.emotion ? 'bg-primary-lightgreen text-primary-green' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
                             key={index}
                             onClick={() => setEmotionClicked(entry.emotion)}
                         >
@@ -57,7 +65,7 @@ function DiaryWriter() {
                 <div className="flex flex-row gap-1">
                     {weatherEntries.map((entry, index) => (
                         <button
-                            className="flex bg-primary-lightgray text-primary-gray px-2 items-center justify-center rounded-lg"
+                            className={`flex ${weatherClicked == entry.weather ? 'bg-primary-lightblue text-primary-blue' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
                             key={index}
                             onClick={() => setWeatherClicked(entry.weather)}
                         >
