@@ -106,14 +106,20 @@ function DiaryWriter() {
 
 function DiaryViewer() {
     const diaryList = useDiaryValue()
+    const isDiaryExsists = diaryList.length > 0
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3 flex justify-between">
             <div className="text-xl text-primary-green text-bold mt-4">{DIARY_LIST_TITLE}</div>
-            <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto h-full justify-center ">
-                {diaryList.map((diary, index) => (
-                    <DiaryViewerBox diary={diary} key={index} />
-                ))}
-            </div>
+            {isDiaryExsists ? (
+                <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto h-full justify-center ">
+                    {diaryList.map((diary, index) => (
+                        <DiaryViewerBox diary={diary} key={index} />
+                    ))}
+                </div>
+            ) : (
+                <div className="text-primary-gray">일기를 적어보세요</div>
+            )}
+
             <Link to="/emotions">
                 <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
                     {VIEW_EMOTIONS_BUTTON_TEXT}
