@@ -14,17 +14,18 @@ function DiaryWriter() {
     const [emotionClicked, setEmotionClicked] = useState<Diary['emotion'] | undefined>()
     const [weatherClicked, setWeatherClicked] = useState<Diary['weather'] | undefined>()
     const [content, setContent] = useState('')
+
     useEffect(() => {
-        const isTitleValid = title.length <= 2
-        const isContentValid = content.length <= 5
-        const isEmotionClicked = emotionClicked == undefined
-        const isWeatherClicked = weatherClicked == undefined
-        const flag = isTitleValid || isContentValid || isEmotionClicked || isWeatherClicked
-        setIsValid(!flag)
+        const condition =
+            title.length <= 2 || content.length <= 5 || emotionClicked == undefined || weatherClicked == undefined
+        setIsValid(!condition)
     }, [title, emotionClicked, weatherClicked, content])
 
     const add = updateDiaryStorage()
+
     const saveDiary = () => {
+        if (!isValid) return
+
         add({
             id: window.crypto.randomUUID(),
             title: title,
@@ -36,6 +37,7 @@ function DiaryWriter() {
 
         reset()
     }
+
     const reset = () => {
         setTitle('')
         setContent('')
@@ -81,18 +83,12 @@ function DiaryWriter() {
                 value={content}
             ></textarea>
 
-            {isValid ? (
-                <button
-                    className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green"
-                    onClick={saveDiary}
-                >
-                    일기를 저장해 보아요
-                </button>
-            ) : (
-                <button className="w-full bg-primary-lightgray rounded-lg py-2 text-lg text-primary-gray">
-                    일기를 더 자세히 적어볼까요?
-                </button>
-            )}
+            <button
+                className={`w-full ${isValid ? 'bg-primary-lightgreen text-primary-green' : 'bg-primary-lightgray text-primary-gray'} rounded-lg py-2 text-lg `}
+                onClick={saveDiary}
+            >
+                {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
+            </button>
         </div>
     )
 }
