@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { updateDiaryStorage } from '../hooks/useLocalStorage'
 import { Diary } from '../interface/diary'
+import { useDiaryValue } from '../provider/Diary'
 
 function DiaryWriter() {
     const emotions: ('bad' | 'soso' | 'good' | 'great' | 'awesome')[] = ['bad', 'soso', 'good', 'great', 'awesome']
@@ -98,21 +99,36 @@ function DiaryWriter() {
         </div>
     )
 }
+const DiaryViewerBox = ({ diary }: { diary: Diary }) => {
+    const formattedDate = diary.date
+        .toLocaleDateString('ko-KR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        })
+        .replace(/\//g, '.')
+    return (
+        <div className="border rounded-lg p-3 flex flex-col gap-2 ">
+            <div className="text-lg">{diary.title}</div>
+            <div className="flex flex-row justify-between">
+                <div className="text-sm text-primary-gray">{formattedDate}</div>
+                <div className="flex flex-row">
+                    <div className="rounded-full border w-6 h-6 flex items-center justify-center">{diary.emotion}</div>
+                    <div className="rounded-full border w-6 h-6 flex items-center justify-center">{diary.weather}</div>
+                </div>
+            </div>
+        </div>
+    )
+}
 function DiaryViewer() {
+    const diaryList = useDiaryValue()
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3">
             <div className="text-xl text-primary-green text-bold mt-4">기록된 일기</div>
             <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto h-full justify-center ">
-                <div className="border rounded-lg p-3 flex flex-col gap-2 ">
-                    <div className="text-lg">ㅓㅏㅗㅓㅏ</div>
-                    <div className="flex flex-row justify-between">
-                        <div className="text-sm text-primary-gray">2024.12.17. </div>
-                        <div className="flex flex-row">
-                            <div className="rounded-full border w-6 h-6 flex items-center justify-center">🥲</div>
-                            <div className="rounded-full border w-6 h-6 flex items-center justify-center">🥲</div>
-                        </div>
-                    </div>
-                </div>
+                {diaryList.map((diary, index) => (
+                    <DiaryViewerBox diary={diary} key={index} />
+                ))}
             </div>
             <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
                 감정 모아보기
