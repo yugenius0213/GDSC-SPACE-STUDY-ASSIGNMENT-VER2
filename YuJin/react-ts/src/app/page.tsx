@@ -7,14 +7,8 @@ import { WEATHER_EMOJI } from './constants/weather'
 import { Link } from 'react-router-dom'
 
 function DiaryWriter() {
-    const emotions: ('bad' | 'soso' | 'good' | 'great' | 'awesome')[] = ['bad', 'soso', 'good', 'great', 'awesome']
-    const emotionEntries = emotions.map((emotion) => ({
-        emotion: emotion,
-    }))
-    const weather: ('sunny' | 'cloud' | 'rain' | 'snow')[] = ['sunny', 'cloud', 'rain', 'snow']
-    const weatherEntries = weather.map((weather) => ({
-        weather: weather,
-    }))
+    const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
+    const weather: Diary['weather'][] = ['sunny', 'cloud', 'rain', 'snow']
     const [isValid, setIsValid] = useState(false)
     const [title, setTitle] = useState('')
     const [emotionClicked, setEmotionClicked] = useState<Diary['emotion'] | undefined>()
@@ -58,30 +52,30 @@ function DiaryWriter() {
             ></input>
             <div className="flex flex-col gap-2 py-8">
                 <div className="flex flex-row gap-1">
-                    {emotionEntries.map((entry, index) => (
+                    {emotions.map((emotion, index) => (
                         <button
-                            className={`flex ${emotionClicked == entry.emotion ? 'bg-primary-lightgreen text-primary-green' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
+                            className={`flex ${emotionClicked == emotion ? 'bg-primary-lightgreen text-primary-green' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
                             key={index}
-                            onClick={() => setEmotionClicked(entry.emotion)}
+                            onClick={() => setEmotionClicked(emotion)}
                         >
-                            {entry.emotion}
+                            {emotion}
                         </button>
                     ))}
                 </div>
                 <div className="flex flex-row gap-1">
-                    {weatherEntries.map((entry, index) => (
+                    {weather.map((weather, index) => (
                         <button
-                            className={`flex ${weatherClicked == entry.weather ? 'bg-primary-lightblue text-primary-blue' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
+                            className={`flex ${weatherClicked == weather ? 'bg-primary-lightblue text-primary-blue' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
                             key={index}
-                            onClick={() => setWeatherClicked(entry.weather)}
+                            onClick={() => setWeatherClicked(weather)}
                         >
-                            {entry.weather}
+                            {weather}
                         </button>
                     ))}
                 </div>
             </div>
             <textarea
-                className="w-full h-full focus:border focus:rounded-lg p-2 focus:outline-none "
+                className="w-full h-full focus:border focus:rounded-lg p-2 focus:outline-none mb-4 "
                 placeholder="오늘 당신의 하루는 어땠나요?"
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
@@ -131,21 +125,14 @@ const DiaryViewerBox = ({ diary }: { diary: Diary }) => {
 }
 function DiaryViewer() {
     const diaryList = useDiaryValue()
-
-    const isDiaryExsists = diaryList.length > 0
-    console.log(diaryList)
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3 flex justify-between">
             <div className="text-xl text-primary-green text-bold mt-4">기록된 일기</div>
-            {isDiaryExsists ? (
-                <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto h-full justify-center ">
-                    {diaryList.map((diary, index) => (
-                        <DiaryViewerBox diary={diary} key={index} />
-                    ))}
-                </div>
-            ) : (
-                <div></div>
-            )}
+            <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto h-full justify-center ">
+                {diaryList.map((diary, index) => (
+                    <DiaryViewerBox diary={diary} key={index} />
+                ))}
+            </div>
             <Link to="/emotions">
                 <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
                     감정 모아보기
