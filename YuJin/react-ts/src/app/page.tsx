@@ -17,11 +17,12 @@ function DiaryWriter() {
     const [weatherClicked, setWeatherClicked] = useState<Diary['weather'] | undefined>()
     const [content, setContent] = useState('')
     useEffect(() => {
-        const isTitleValid = title.length > 2
-        const isContentValid = content.length > 5
-        const isEmotionClicked = emotionClicked != undefined
-        const isWeatherClicked = weatherClicked != undefined
-        setIsValid(isTitleValid && isContentValid && isEmotionClicked && isWeatherClicked)
+        const isTitleValid = title.length <= 2
+        const isContentValid = content.length <= 5
+        const isEmotionClicked = emotionClicked == undefined
+        const isWeatherClicked = weatherClicked == undefined
+        const flag = isTitleValid || isContentValid || isEmotionClicked || isWeatherClicked
+        setIsValid(!flag)
     }, [title, emotionClicked, weatherClicked, content])
 
     const add = updateDiaryStorage()
@@ -35,20 +36,21 @@ function DiaryWriter() {
             weather: weatherClicked!,
         })
 
-        // reset()
+        reset()
     }
-    // const reset = () => {
-    //     setTitle('')
-    //     setContent('')
-    //     setEmotionClicked(undefined)
-    //     setWeatherClicked(undefined)
-    // }
+    const reset = () => {
+        setTitle('')
+        setContent('')
+        setEmotionClicked(undefined)
+        setWeatherClicked(undefined)
+    }
     return (
         <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3">
             <input
                 className="w-full p-2 text-2xl hover:border hover:rounded-lg focus:outline-none mt-4"
                 placeholder="제목을 적어보세요"
                 onChange={(e) => setTitle(e.target.value)}
+                value={title}
             ></input>
             <div className="flex flex-col gap-2 py-8">
                 <div className="flex flex-row gap-1">
@@ -78,6 +80,7 @@ function DiaryWriter() {
                 className="w-full h-full focus:border focus:rounded-lg p-2 focus:outline-none "
                 placeholder="오늘 당신의 하루는 어땠나요?"
                 onChange={(e) => setContent(e.target.value)}
+                value={content}
             ></textarea>
 
             {isValid ? (
