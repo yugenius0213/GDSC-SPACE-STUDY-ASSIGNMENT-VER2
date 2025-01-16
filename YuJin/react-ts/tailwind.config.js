@@ -12,6 +12,8 @@ export default {
                     lightgreen: '#D1FAE5',
                     blue: '#2563EB',
                     lightblue: '#DBEAFE',
+                    red: '#DC2626',
+                    lightred: '#FEE2E2',
                 },
             },
         },
