@@ -122,10 +122,19 @@ const DiaryWriter = () => {
     )
 }
 
+const DiaryStorage = () => {
+    return (
+        <div className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
+            <h1 className="text-xl text-emerald-600 mt-5">기록된 일기</h1>
+        </div>
+    )
+}
+
 export default function DiaryHomePage() {
     return (
         <div className="flex flex-col items-center justify-center gap-10 h-full md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3">
             <DiaryWriter />
+            <DiaryStorage />
         </div>
     )
 }
