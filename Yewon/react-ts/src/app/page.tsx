@@ -25,6 +25,16 @@ const EmotionIcon = ({ emotion }: { emotion: Diary['emotion'] }) => {
     return <span>{icons[emotion]}</span>
 }
 
+const WeatherIcon = ({ weather }: { weather: Diary['weather'] }) => {
+    const icons: Record<Diary['weather'], string> = {
+        sunny: '☀',
+        cloud: '☁',
+        rain: '🌧',
+        snow: '❄',
+    }
+    return <span>{icons[weather]}</span>
+}
+
 function saveDiary(title: string, contents: string, selectedEmotion: Emotion, selectedWeather: Weather) {
     const storedData: Diary[] = JSON.parse(localStorage.getItem(DIARYKEY)!) || []
     const newDiaryObj = {
@@ -57,7 +67,8 @@ const DiaryCard: React.FC<DiaryProps> = ({ diary }) => {
                 <div className="flex flex-row items-center justify-between gap-1 w-full">
                     <span className="text-gray-400 text-sm">{formatDate(diary.date)}</span>
                     <div className="flex flex-row gap-1s">
-                        <EmotionIcon emotion={diary.emotion}/>
+                        <EmotionIcon emotion={diary.emotion} />
+                        <WeatherIcon weather={diary.weather} />
                     </div>
                 </div>
             </button>
@@ -154,7 +165,7 @@ const DiaryStorage = () => {
         <div className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl text-emerald-600 mt-5">기록된 일기</h1>
             <div className="flex flex-col overflow-y-auto gap-2 w-full h-96 max-h-96">
-                {storedData.length === 0 && <p className="flex items-center text-gray-400">일기를 적어보세요</p>}
+                {storedData.length === 0 && <p className="flex justify-center items-center text-gray-400 text-sm">일기를 적어보세요</p>}
                 {storedData.map((diary, index) => (
                     <DiaryCard diary={diary} />
                 ))}
