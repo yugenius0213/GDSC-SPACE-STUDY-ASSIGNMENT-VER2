@@ -4,7 +4,7 @@
 
 @layer components {
   .inputfield-text {
-    @apply w-full p-2 mt-4 rounded-lg hover:border focus:outline-none focus:ring-1 focus:ring-gray-100;
+    @apply w-full p-2 rounded-lg border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-100;
   }
 
   .default-btn {
@@ -13,5 +13,9 @@
 
   .green-btn {
     @apply p-1 rounded-lg text-sm border border-transparent bg-emerald-100 text-emerald-600 hover:border-emerald-600
+  }
+
+  .blue-btn {
+    @apply p-1 rounded-lg text-sm border border-transparent bg-blue-100 text-blue-600 hover:border-blue-600
   }
 }
