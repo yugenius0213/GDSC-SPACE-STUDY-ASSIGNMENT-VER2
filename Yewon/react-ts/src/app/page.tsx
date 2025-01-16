@@ -79,15 +79,15 @@ const DiaryCard: React.FC<DiaryProps> = ({ diary }) => {
 const DiaryWriter = () => {
     const [title, setTitle] = useState('')
     const [contents, setContents] = useState('')
-    const [selectedEmotion, setSelectedEmotion] = useState('')
-    const [selectedWeather, setSelectedWeather] = useState('')
+    const [selectedEmotion, setSelectedEmotion] = useState<Emotion | undefined>()
+    const [selectedWeather, setSelectedWeather] = useState<Weather | undefined>()
     const [isValid, setValid] = useState(false)
 
     const handleEmotionClick = (emotion: string) => {
-        setSelectedEmotion(emotion)
+        setSelectedEmotion(emotion as Emotion)
     }
     const handleWeatherClick = (weather: string) => {
-        setSelectedWeather(weather)
+        setSelectedWeather(weather as Weather)
     }
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
@@ -98,7 +98,7 @@ const DiaryWriter = () => {
 
     useEffect(() => {
         const invalidDiary =
-            selectedEmotion === '' || selectedWeather === '' || title.length <= 2 || contents.length <= 5
+            selectedEmotion === undefined || selectedWeather === undefined || title.length <= 2 || contents.length <= 5
 
         setValid(!invalidDiary)
     }, [title, contents, selectedEmotion, selectedWeather])
