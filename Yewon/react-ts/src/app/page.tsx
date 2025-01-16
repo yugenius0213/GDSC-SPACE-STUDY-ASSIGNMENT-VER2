@@ -29,7 +29,7 @@ const DiaryWriter = () => {
                 ))}
             </div>
             <div className="flex mt-2 mb-6 gap-2">
-                {weathers.map((weather,index)=>(
+                {weathers.map((weather, index) => (
                     <button key={index} type="button" className="default-btn" name="weather" value={weather}>
                         {weather}
                     </button>
@@ -40,6 +40,9 @@ const DiaryWriter = () => {
                 className="inputfield-text resize-none h-1/2 mb-2"
                 placeholder="오늘 당신의 하루는 어땠나요?"
             />
+            <button type="submit" className="default-btn w-full p-2">
+                일기를 더 자세히 적어볼까요?
+            </button>
         </div>
     )
 }
