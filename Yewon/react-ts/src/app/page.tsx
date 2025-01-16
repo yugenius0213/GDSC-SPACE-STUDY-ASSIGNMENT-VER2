@@ -104,7 +104,7 @@ const DiaryWriter = () => {
     }, [title, contents, selectedEmotion, selectedWeather])
 
     return (
-        <div className="flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 h-2/3">
+        <form id="write-form" className="flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 h-2/3">
             <input
                 required
                 type="text"
@@ -154,7 +154,7 @@ const DiaryWriter = () => {
             >
                 {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
             </button>
-        </div>
+        </form>
     )
 }
 
