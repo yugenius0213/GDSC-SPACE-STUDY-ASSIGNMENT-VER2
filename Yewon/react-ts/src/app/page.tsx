@@ -168,8 +168,8 @@ const DiaryStorage = () => {
                 {storedData.length === 0 && (
                     <p className="flex justify-center items-center text-gray-400 text-sm">일기를 적어보세요</p>
                 )}
-                {storedData.map((diary, index) => (
-                    <DiaryCard diary={diary} />
+                {storedData.map((diary) => (
+                    <DiaryCard key={diary.id} diary={diary} />
                 ))}
             </div>
             <Link to="/emotions">
