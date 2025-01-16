@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
+import { DiaryCard } from '../components/DiaryCard'
 
 type Emotion = Diary['emotion']
 type Weather = Diary['weather']
@@ -8,32 +9,7 @@ type Weather = Diary['weather']
 const emotions: Emotion[] = ['bad', 'soso', 'good', 'great', 'awesome']
 const weathers: Weather[] = ['sunny', 'cloud', 'rain', 'snow']
 
-interface DiaryProps {
-    diary: Diary
-}
-
 export const DIARYKEY = 'diary-storage'
-
-const EmotionIcon = ({ emotion }: { emotion: Diary['emotion'] }) => {
-    const icons: Record<Diary['emotion'], string> = {
-        bad: '🤬',
-        soso: '😗',
-        good: '😙',
-        great: '😃',
-        awesome: '😎',
-    }
-    return <span>{icons[emotion]}</span>
-}
-
-const WeatherIcon = ({ weather }: { weather: Diary['weather'] }) => {
-    const icons: Record<Diary['weather'], string> = {
-        sunny: '☀',
-        cloud: '☁',
-        rain: '🌧',
-        snow: '❄',
-    }
-    return <span>{icons[weather]}</span>
-}
 
 function saveDiary(title: string, contents: string, selectedEmotion: Emotion, selectedWeather: Weather) {
     const storedData: Diary[] = JSON.parse(localStorage.getItem(DIARYKEY)!) || []
@@ -50,31 +26,7 @@ function saveDiary(title: string, contents: string, selectedEmotion: Emotion, se
     localStorage.setItem(DIARYKEY, JSON.stringify([...storedData, newDiaryObj]))
 }
 
-const DiaryCard: React.FC<DiaryProps> = ({ diary }) => {
-    const formatDate = (date: Date): string => {
-        const strDate = date.toString()
 
-        const year = strDate.substring(0, 4)
-        const month = strDate.substring(5, 7)
-        const day = strDate.substring(8, 10)
-        return `${year}. ${month}. ${day}.`
-    }
-
-    return (
-        <Link to={`detail/${diary.id}`} key={diary.id}>
-            <button className="w-full flex flex-col items-start justify-center gap-1.5 p-3 hover:bg-gray-50 border border-gray-100 rounded-lg">
-                <h1>{diary.title}</h1>
-                <div className="flex flex-row items-center justify-between gap-1 w-full">
-                    <span className="text-gray-400 text-sm">{formatDate(diary.date)}</span>
-                    <div className="flex flex-row gap-1s">
-                        <EmotionIcon emotion={diary.emotion} />
-                        <WeatherIcon weather={diary.weather} />
-                    </div>
-                </div>
-            </button>
-        </Link>
-    )
-}
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState('')
