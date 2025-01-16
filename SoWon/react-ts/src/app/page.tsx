@@ -1,13 +1,25 @@
-import { useState } from 'react'
+import { useState, MouseEvent } from 'react'
+
+type Emotion = 'bad' | 'soso' | 'good' | 'great' | 'awesome'
+type Weather = 'cloud' | 'rain' | 'snow' | 'sunny'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
-    const [weather, setWeather] = useState<string>('')
-    const [emotion, setEmotion] = useState<string>('')
+    const [weather, setWeather] = useState<Weather | ''>('')
+    const [emotion, setEmotion] = useState<Emotion | ''>('')
 
-    const emotions: string[] = ['bad', 'soso', 'good', 'great', 'awesome']
-    const weathers: string[] = ['cloud', 'rain', 'snow', 'sunny']
+    const emotions: Emotion[] = ['bad', 'soso', 'good', 'great', 'awesome']
+    const weathers: Weather[] = ['cloud', 'rain', 'snow', 'sunny']
+
+    const minTitleLength: number = 3
+    const minContentLength: number = 6
+
+    // 일기 제출 핸들러
+    const handleSave = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        console.log(title, content, weather, emotion)
+    }
 
     return (
         <div className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 w-full h-2/3 min-h-[20rem]">
@@ -19,25 +31,35 @@ const DiaryWriter = () => {
             />
             <div className="flex flex-col gap-2 pt-4">
                 <div className="flex flex-row gap-1">
-                    {emotions.map((emotion, index) => (
+                    {emotions.map((e, index) => (
                         <div key={index}>
                             <button
                                 type="button"
-                                className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-02 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600 px-1.5 py-0.5 text-sm"
+                                className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full ${
+                                    emotion === e
+                                        ? 'p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600'
+                                        : 'p-02 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
+                                } px-1.5 py-0.5 text-sm`}
+                                onClick={() => setEmotion(e)}
                             >
-                                {emotion}
+                                {e}
                             </button>
                         </div>
                     ))}
                 </div>
                 <div className="flex flex-row gap-1">
-                    {weathers.map((emotion, index) => (
+                    {weathers.map((w, index) => (
                         <div key={index}>
                             <button
                                 type="button"
-                                className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-02 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600 px-1.5 py-0.5 text-sm"
+                                className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full ${
+                                    weather === w
+                                        ? 'p-2 cursor-pointer transition-colors ease-in bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600'
+                                        : 'p-02 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
+                                } px-1.5 py-0.5 text-sm`}
+                                onClick={() => setWeather(w)}
                             >
-                                {emotion}
+                                {w}
                             </button>
                         </div>
                     ))}
@@ -46,11 +68,25 @@ const DiaryWriter = () => {
             <textarea
                 className="p-2 mt-4 rounded-md transition ring-gray-100 focus:outline-none focus:ring-1 placeholder:text-gray-400 h-full resize-none"
                 value={content}
+                onChange={(e) => setContent(e.target.value)}
                 placeholder="오늘 당신의 하루는 어땠나요?"
             ></textarea>
-            <button className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600">
-                일기를 더 자세히 적어볼까요?
-            </button>
+            {title.length < minTitleLength || content.length < minContentLength ? (
+                <button
+                    type="button"
+                    className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600"
+                >
+                    일기를 더 자세히 적어볼까요?
+                </button>
+            ) : (
+                <button
+                    type="submit"
+                    className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600"
+                    onClick={(e) => handleSave(e)}
+                >
+                    일기를 저장해 보아요
+                </button>
+            )}
         </div>
     )
 }
