@@ -7,6 +7,8 @@ type Weather = Diary['weather']
 const emotions: Emotion[] = ['bad', 'soso', 'good', 'great', 'awesome']
 const weathers: Weather[] = ['sunny', 'cloud', 'rain', 'snow']
 
+export const DIARYKEY = 'diary-storage'
+
 const EmotionIcon = ({ emotion }: { emotion: Diary['emotion'] }) => {
     const icons: Record<Diary['emotion'], string> = {
         bad: '😞',
@@ -16,6 +18,26 @@ const EmotionIcon = ({ emotion }: { emotion: Diary['emotion'] }) => {
         awesome: '🌟',
     }
     return <span>{icons[emotion]}</span>
+}
+
+function saveDiary(
+    title: string,
+    contents: string,
+    selectedEmotion: Emotion,
+    selectedWeather: Weather
+) {
+    const storedData: Diary[] = JSON.parse(localStorage.getItem(DIARYKEY)!) || []
+    const newDiaryObj = {
+        id: window.crypto.randomUUID(),
+        title: title,
+        content: contents,
+        date: new Date(),
+        emotion: selectedEmotion!,
+        weather: selectedWeather!,
+        views: 1,
+    }
+
+    localStorage.setItem(DIARYKEY, JSON.stringify([...storedData, newDiaryObj]))
 }
 
 const DiaryWriter = () => {
@@ -92,6 +114,7 @@ const DiaryWriter = () => {
                 type="submit"
                 disabled={!isValid}
                 className={`${isValid ? 'green-btn' : 'default-btn'} w-full p-3`}
+                onClick={() => saveDiary(title, contents, selectedEmotion as Emotion, selectedWeather as Weather)}
             >
                 {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
             </button>
