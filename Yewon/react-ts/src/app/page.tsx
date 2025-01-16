@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Diary } from '../interface/diary'
+import { Link } from 'react-router-dom'
 
 type Emotion = Diary['emotion']
 type Weather = Diary['weather']
 
 const emotions: Emotion[] = ['bad', 'soso', 'good', 'great', 'awesome']
 const weathers: Weather[] = ['sunny', 'cloud', 'rain', 'snow']
+
+interface DiaryProps {
+    diary: Diary
+}
 
 export const DIARYKEY = 'diary-storage'
 
@@ -20,12 +25,7 @@ const EmotionIcon = ({ emotion }: { emotion: Diary['emotion'] }) => {
     return <span>{icons[emotion]}</span>
 }
 
-function saveDiary(
-    title: string,
-    contents: string,
-    selectedEmotion: Emotion,
-    selectedWeather: Weather
-) {
+function saveDiary(title: string, contents: string, selectedEmotion: Emotion, selectedWeather: Weather) {
     const storedData: Diary[] = JSON.parse(localStorage.getItem(DIARYKEY)!) || []
     const newDiaryObj = {
         id: window.crypto.randomUUID(),
@@ -38,6 +38,29 @@ function saveDiary(
     }
 
     localStorage.setItem(DIARYKEY, JSON.stringify([...storedData, newDiaryObj]))
+}
+
+const DiaryCard: React.FC<DiaryProps> = ({ diary }) => {
+    const formatDate = (date: Date): string => {
+        const strDate = date.toString()
+
+        const year = strDate.substring(0, 4)
+        const month = strDate.substring(5, 7)
+        const day = strDate.substring(8, 10)
+        return `${year}. ${month}. ${day}.`
+    }
+
+    return (
+        <Link to={`detail/${diary.id}`} key={diary.id}>
+            <button className="w-full flex flex-col items-start justify-center gap-1.5 p-3 hover:bg-gray-50 border border-gray-100 rounded-lg">
+                <h1>{diary.title}</h1>
+                <div className="flex flex-row items-center justify-between gap-1 w-full">
+                    <span className="text-gray-400 text-sm">{formatDate(diary.date)}</span>
+                    <div className="flex flex-row gap-1s"></div>
+                </div>
+            </button>
+        </Link>
+    )
 }
 
 const DiaryWriter = () => {
@@ -123,9 +146,15 @@ const DiaryWriter = () => {
 }
 
 const DiaryStorage = () => {
+    const storedData: Diary[] = JSON.parse(localStorage.getItem(DIARYKEY)!) || []
+
     return (
         <div className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl text-emerald-600 mt-5">기록된 일기</h1>
+            <div className="flex flex-col overflow-y-auto gap-2 w-full h-96 max-h-96">
+                {storedData.length === 0 && <p className="flex items-center text-gray-400">일기를 적어보세요</p>}
+                {storedData.map((diary, index) => <DiaryCard diary={diary}/>)}
+            </div>
         </div>
     )
 }
