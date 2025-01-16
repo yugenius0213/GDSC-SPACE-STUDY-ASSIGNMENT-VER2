@@ -16,11 +16,11 @@ export const DIARYKEY = 'diary-storage'
 
 const EmotionIcon = ({ emotion }: { emotion: Diary['emotion'] }) => {
     const icons: Record<Diary['emotion'], string> = {
-        bad: '😞',
-        soso: '😐',
-        good: '🙂',
+        bad: '🤬',
+        soso: '😗',
+        good: '😙',
         great: '😃',
-        awesome: '🌟',
+        awesome: '😎',
     }
     return <span>{icons[emotion]}</span>
 }
@@ -56,7 +56,9 @@ const DiaryCard: React.FC<DiaryProps> = ({ diary }) => {
                 <h1>{diary.title}</h1>
                 <div className="flex flex-row items-center justify-between gap-1 w-full">
                     <span className="text-gray-400 text-sm">{formatDate(diary.date)}</span>
-                    <div className="flex flex-row gap-1s"></div>
+                    <div className="flex flex-row gap-1s">
+                        <EmotionIcon emotion={diary.emotion}/>
+                    </div>
                 </div>
             </button>
         </Link>
@@ -153,7 +155,9 @@ const DiaryStorage = () => {
             <h1 className="text-xl text-emerald-600 mt-5">기록된 일기</h1>
             <div className="flex flex-col overflow-y-auto gap-2 w-full h-96 max-h-96">
                 {storedData.length === 0 && <p className="flex items-center text-gray-400">일기를 적어보세요</p>}
-                {storedData.map((diary, index) => <DiaryCard diary={diary}/>)}
+                {storedData.map((diary, index) => (
+                    <DiaryCard diary={diary} />
+                ))}
             </div>
         </div>
     )
