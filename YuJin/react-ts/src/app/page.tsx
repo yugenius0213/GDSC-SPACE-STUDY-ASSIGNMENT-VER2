@@ -32,7 +32,7 @@ function DiaryWriter() {
         setIsValid(!condition)
     }, [title, emotionClicked, weatherClicked, content])
 
-    const add = updateDiaryStorage()
+    const add = updateDiaryStorage().addDiary
 
     const saveDiary = () => {
         if (!isValid) return
