@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Diary } from '../interface/diary'
 
 type Emotion = Diary['emotion']
@@ -18,19 +19,65 @@ const EmotionIcon = ({ emotion }: { emotion: Diary['emotion'] }) => {
 }
 
 const DiaryWriter = () => {
+    const [title, setTitle] = useState('')
+    const [contents, setContents] = useState('')
+    const [selectedEmotion, setSelectedEmotion] = useState('')
+    const [selectedWeather, setSelectedWeather] = useState('')
+    const [isValid, setValid] = useState(false)
+
+    const handleEmotionClick = (emotion: string) => {
+        setSelectedEmotion(emotion)
+    }
+    const handleWeatherClick = (weather: string) => {
+        setSelectedWeather(weather)
+    }
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value)
+    }
+    const handleContentsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setContents(e.target.value)
+    }
+
+    useEffect(() => {
+        const invalidDiary =
+            selectedEmotion === '' || selectedWeather === '' || title.length <= 2 || contents.length <= 5
+
+        setValid(!invalidDiary)
+    }, [title, contents, selectedEmotion, selectedWeather])
+
     return (
         <div className="flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 h-2/3">
-            <input required type="text" className="inputfield-text mt-4 text-2xl" placeholder="제목을 적어보세요." />
+            <input
+                required
+                type="text"
+                className="inputfield-text mt-2 text-2xl"
+                placeholder="제목을 적어보세요."
+                onChange={handleTitleChange}
+            />
             <div className="flex mt-6 gap-2">
                 {emotions.map((emotion, index) => (
-                    <button key={index} type="button" className="default-btn" name="feeling" value={emotion}>
+                    <button
+                        key={index}
+                        type="button"
+                        className={`${selectedEmotion === emotion ? 'green-btn' : 'default-btn'}`}
+                        name="feeling"
+                        value={emotion}
+                        onClick={() => handleEmotionClick(emotion)}
+                    >
                         {emotion}
                     </button>
                 ))}
             </div>
             <div className="flex mt-2 mb-6 gap-2">
                 {weathers.map((weather, index) => (
-                    <button key={index} type="button" className="default-btn" name="weather" value={weather}>
+                    <button
+                        key={index}
+                        type="button"
+                        className={`${selectedWeather === weather ? 'blue-btn' : 'default-btn'}`}
+                        name="weather"
+                        value={weather}
+                        onClick={() => handleWeatherClick(weather)}
+                    >
                         {weather}
                     </button>
                 ))}
@@ -39,9 +86,14 @@ const DiaryWriter = () => {
                 required
                 className="inputfield-text resize-none h-1/2 mb-2"
                 placeholder="오늘 당신의 하루는 어땠나요?"
+                onChange={handleContentsChange}
             />
-            <button type="submit" className="default-btn w-full p-2">
-                일기를 더 자세히 적어볼까요?
+            <button
+                type="submit"
+                disabled={!isValid}
+                className={`${isValid ? 'green-btn' : 'default-btn'} w-full p-3`}
+            >
+                {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
             </button>
         </div>
     )
