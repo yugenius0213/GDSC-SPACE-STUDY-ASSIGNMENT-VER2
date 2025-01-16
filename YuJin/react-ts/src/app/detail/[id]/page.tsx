@@ -1,6 +1,7 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDiaryValue } from '../../../provider/Diary'
 import { dateFormatting } from '../../utils/dateFormat'
+import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
 
 type DiaryDetailPageParams = {
     id: string
@@ -10,6 +11,12 @@ export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
     const diary = useDiaryValue().find((diary) => diary.id === id)
     const formattedDate = dateFormatting(diary!.date, 'full')
+    const removedDiary = updateDiaryStorage().removeDiary
+    const navigate = useNavigate()
+    const removeDiary = () => {
+        removedDiary({ id: id! })
+        navigate('/')
+    }
     return (
         <div className="h-full w-2/4 py-20">
             <div className="flex flex-col gap-4  my-9">
@@ -30,7 +37,7 @@ export default function DiaryDetailPage() {
                 </div>
             </div>
 
-            <div className="h-2/3">내용</div>
+            <div className="h-2/3"> {diary?.content}</div>
             <div className="flex flex-row gap-2">
                 <Link
                     to="/"
@@ -38,7 +45,10 @@ export default function DiaryDetailPage() {
                 >
                     새로운 일기 작성하기
                 </Link>
-                <button className="flex w-full bg-primary-lightred text-primary-red  px-1.5 py-2 items-center justify-center rounded-lg">
+                <button
+                    className="flex w-full bg-primary-lightred text-primary-red  px-1.5 py-2 items-center justify-center rounded-lg"
+                    onClick={removeDiary}
+                >
                     현재 일기 삭제하기
                 </button>
             </div>
