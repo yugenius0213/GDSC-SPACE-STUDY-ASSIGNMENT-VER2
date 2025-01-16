@@ -19,13 +19,13 @@ export default function DiaryDetailPage() {
                         {formattedDate}
                     </div>
                     <div className="text-sm w-full flex bg-primary-lightgray text-primary-gray px-1.5 py-0.5 items-center justify-center rounded-lg">
-                        snow
+                        {diary?.weather}
                     </div>
                     <Link
-                        to="/emotions/soso"
+                        to={`/emotions/${diary?.emotion}`}
                         className="text-sm w-full flex bg-primary-lightgray text-primary-gray px-1.5 py-0.5 items-center justify-center rounded-lg"
                     >
-                        good
+                        {diary?.emotion}
                     </Link>
                 </div>
             </div>
