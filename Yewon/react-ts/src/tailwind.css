@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .inputfield-text {
+    @apply w-full p-2 mt-4 rounded-lg hover:border focus:outline-none focus:ring-1 focus:ring-gray-100;
+  }
+}
