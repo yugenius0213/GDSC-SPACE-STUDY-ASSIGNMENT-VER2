@@ -7,12 +7,11 @@ import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
 import { minContentLength, minTitleLength } from './constants/contraints'
 import {
     DIARY_CONTENT_PLACEHOLDER,
-    DIARY_LIST_TITLE,
     DIARY_TITLE_PLACEHOLDER,
     INVALID_SAVE_BUTTON_TEXT,
     VALID_SAVE_BUTTON_TEXT,
-    VIEW_EMOTIONS_BUTTON_TEXT,
 } from './constants/diaryInputs'
+import { DIARY_LIST_TITLE, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
 
 function DiaryWriter() {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
