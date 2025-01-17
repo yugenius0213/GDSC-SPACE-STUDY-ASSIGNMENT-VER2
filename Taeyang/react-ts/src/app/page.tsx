@@ -16,25 +16,25 @@ export default function DiaryPage() {
             className="mt-2 mb-6 text-2xl"
             placeholder="제목을 적어보세요."
           />
-          <div className="flex gap-3">
+          <div className="flex gap-[2px]">
             {emotions.map((emotion) => (
               <button
                 key={emotion}
                 type="button"
                 onClick={() => setSelectedEmotion(emotion)}
-                className="text-xs"
+                className="px-1.5 py-[1px] rounded-md border text-xs min-w-[38px] bg-gray-100 text-gray-400 border-gray-200"
               >
                 {emotion}
               </button>
             ))}
           </div>
-          <div className="flex gap-3 -mt-1 mb-6">
+          <div className="flex gap-[2px] -mt-1 mb-6">
             {weathers.map((weather) => (
               <button
                 key={weather}
                 type="button"
                 onClick={() => setSelectedWeather(weather)}
-                className="text-xs"
+                className="px-1.5 py-[1px] rounded-md border text-xs min-w-[38px] bg-gray-100 text-gray-400 border-gray-200"
               >
                 {weather}
               </button>
@@ -45,7 +45,7 @@ export default function DiaryPage() {
             placeholder="오늘 당신의 하루는 어땠나요?"
           />
         </div>
-        <button type="submit" className="w-full text-sm">
+        <button type="submit" className="w-full p-2 bg-gray-100 text-gray-500 rounded-lg text-sm">
           일기를 더 자세히 적어볼까요?
         </button>
       </form>
@@ -57,7 +57,7 @@ export default function DiaryPage() {
             <p className="text-sm mt-[250px]">일기를 적어보세요</p>
           </div>
         </div>
-        <button type="button" className="w-full text-sm">
+        <button type="button" className="w-full p-2 bg-gray-100 text-gray-500 rounded-lg text-sm">
           감정 모아보기
         </button>
       </div>
