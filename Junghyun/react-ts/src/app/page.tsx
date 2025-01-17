@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Diary } from '../interface/diary'
 
 const DiaryWriter = () => {
@@ -6,6 +6,12 @@ const DiaryWriter = () => {
     const [content, setContent] = useState<string>('')
     const [emotion, setEmotion] = useState<Diary['emotion']>()
     const [weather, setWeather] = useState<Diary['weather']>()
+    const [isValid, setIsValid] = useState<boolean>(false)
+
+    useEffect(() => {
+        const isInvalid = title.length < 1 || content.length < 3 || !emotion || !weather
+        setIsValid(!isInvalid)
+    }, [title, content, emotion, weather])
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
@@ -67,7 +73,12 @@ const DiaryWriter = () => {
                     onChange={handleContentChange}
                     placeholder="오늘 당신의 하루는 어땠나요?"
                 />
-                <button className="bg-gray-200 p-2 rounded-lg text-gray-500">일기를 더 자세히 적어볼까요?</button>
+                <button
+                    className={`p-2 rounded-lg
+                    ${isValid ? 'bg-green-200 text-green-600' : 'bg-gray-200 text-gray-500'}`}
+                >
+                    {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
+                </button>
             </div>
         </>
     )
