@@ -2,8 +2,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function DiaryPage() {
-  const emotions = ['bad', 'soso', 'good', 'great', 'awesome'];
-  const weathers = ['cloud', 'rain', 'snow', 'sunny'];
+  const emotions = [
+    { label: 'bad', icon: '😢' },
+    { label: 'soso', icon: '😐' },
+    { label: 'good', icon: '😊' },
+    { label: 'great', icon: '😄' },
+    { label: 'awesome', icon: '🤩' },
+  ];
+
+  const weathers = [
+    { label: 'cloud', icon: '☁️' },
+    { label: 'rain', icon: '🌧️' },
+    { label: 'snow', icon: '❄️' },
+    { label: 'sunny', icon: '☀️' },
+  ];
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -53,32 +65,32 @@ export default function DiaryPage() {
           <div className="flex gap-[2px]">
             {emotions.map((emotion) => (
               <button
-                key={emotion}
+                key={emotion.label}
                 type="button"
-                onClick={() => setSelectedEmotion(emotion)}
+                onClick={() => setSelectedEmotion(emotion.label)}
                 className={`${
-                  selectedEmotion === emotion
+                  selectedEmotion === emotion.label
                     ? 'bg-emerald-500 text-white border-emerald-500'
                     : 'bg-gray-100 text-gray-400 border-gray-200'
                 } px-1.5 py-[1px] rounded-md border transition-all duration-200 text-xs min-w-[38px]`}
               >
-                {emotion}
+                {emotion.label}
               </button>
             ))}
           </div>
           <div className="flex gap-[2px] -mt-1 mb-6">
             {weathers.map((weather) => (
               <button
-                key={weather}
+                key={weather.label}
                 type="button"
-                onClick={() => setSelectedWeather(weather)}
+                onClick={() => setSelectedWeather(weather.label)}
                 className={`${
-                  selectedWeather === weather
+                  selectedWeather === weather.label
                     ? 'bg-sky-500 text-white border-sky-500'
                     : 'bg-gray-100 text-gray-400 border-gray-200'
                 } px-1.5 py-[1px] rounded-md border transition-all duration-200 text-xs min-w-[38px]`}
               >
-                {weather}
+                {weather.label}
               </button>
             ))}
           </div>
@@ -120,8 +132,12 @@ export default function DiaryPage() {
                     <p className="text-sm text-gray-500">{diary.date}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-600">{diary.weather}</span>
-                    <span className="text-xs text-gray-600">{diary.emotion}</span>
+                    <span className="text-xs text-gray-600">
+                      {weathers.find((w) => w.label === diary.weather)?.icon}
+                    </span>
+                    <span className="text-xs text-gray-600">
+                      {emotions.find((e) => e.label === diary.emotion)?.icon}
+                    </span>
                   </div>
                 </Link>
               ))
