@@ -1,16 +1,14 @@
 import { useState, MouseEvent } from 'react'
-
-type Emotion = 'bad' | 'soso' | 'good' | 'great' | 'awesome'
-type Weather = 'cloud' | 'rain' | 'snow' | 'sunny'
+import { Diary } from '../interface/diary'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
-    const [weather, setWeather] = useState<Weather | ''>('')
-    const [emotion, setEmotion] = useState<Emotion | ''>('')
+    const [weather, setWeather] = useState<Diary['weather'] | ''>('')
+    const [emotion, setEmotion] = useState<Diary['emotion'] | ''>('')
 
-    const emotions: Emotion[] = ['bad', 'soso', 'good', 'great', 'awesome']
-    const weathers: Weather[] = ['cloud', 'rain', 'snow', 'sunny']
+    const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
+    const weathers: Diary['weather'][] = ['cloud', 'rain', 'snow', 'sunny']
 
     const minTitleLength: number = 3
     const minContentLength: number = 6
