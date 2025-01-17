@@ -6,10 +6,7 @@ type DiaryUpdate = React.Dispatch<React.SetStateAction<Diary[]>>
 const DiaryUpdateContext = createContext<DiaryUpdate | undefined>(undefined)
 
 const DiaryProvider = ({ children }: React.PropsWithChildren) => {
-    const [diaries, updateDiaries] = useState<Diary[]>(() => {
-        const storedDiaries = window.localStorage.getItem('diary')
-        return storedDiaries ? JSON.parse(storedDiaries) : []
-    })
+    const [diaries, updateDiaries] = useState<Diary[]>([])
     return (
         <DiaryValueContext.Provider value={diaries}>
             <DiaryUpdateContext.Provider value={updateDiaries}>{children}</DiaryUpdateContext.Provider>

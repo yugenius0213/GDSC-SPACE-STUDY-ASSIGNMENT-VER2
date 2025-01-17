@@ -5,7 +5,7 @@
 1. Issue 작성 후 작업을 시작합니다. Issue 작성법은 아래와 같습니다.
 
 - GitHub Project에 작업 항목을 추가합니다.
-- 추가한 항목의 Title, Content를 아래 규칛을 참고해 작성한 뒤, `Convert to Issue` 메뉴를 이용해 `GDSC-CAU/GDSC-SPACE-STUDY-ASSIGNMENT-VER2` 레포지토리의 Issue로 등록합니다.
+- 추가한 항목의 Title, Content를 아래 규칙을 참고해 작성한 뒤, `Convert to Issue` 메뉴를 이용해 `GDSC-CAU/GDSC-SPACE-STUDY-ASSIGNMENT-VER2` 레포지토리의 Issue로 등록합니다.
   or
 - Fork된 Repository에서 해당 작업에 대한 Branch를 분리하여 작업을 진행합니다. 이 때, Branch 이름과 Commit 메시지의 규칙은 아래 내용을 따릅니다.
 
