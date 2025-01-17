@@ -6,6 +6,12 @@ function DiaryWriter() {
     const weathers: Diary['weather'][] = ['cloud', 'rain', 'snow', 'sunny']
     const [contents, setContents] = useState<string>('')
     const [isValid, setIsValid] = useState(false)
+
+    useEffect(() => {
+        const isNotValidCondition =
+            emotion === undefined || weather === undefined || title.length <= 2 || contents.length <= 5
+        setIsValid(!isNotValidCondition)
+    }, [title, emotion, weather, contents])
 }
 
 function DiaryRecord() {
