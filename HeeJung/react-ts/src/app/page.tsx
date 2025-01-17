@@ -1,3 +1,14 @@
+function DiaryWriter() {
+    
+}
+
+function DiaryRecord() {
+    
+}
+
 export default function DiaryHomePage() {
-    return <>Diary Home</>
+    return (
+        <DiaryWriter />
+        <DiaryRecord />
+    )
 }
