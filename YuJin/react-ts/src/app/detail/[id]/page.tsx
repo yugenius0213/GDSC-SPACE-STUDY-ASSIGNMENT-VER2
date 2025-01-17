@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDiaryValue } from '../../../provider/Diary'
 import { dateFormatting } from '../../utils/dateFormat'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
+import { DELETE_CURRENT_DIARY, GO_YO_WRITE_DIARY } from '../../constants/diaryOutput'
 
 type DiaryDetailPageParams = {
     id: string
@@ -43,13 +44,13 @@ export default function DiaryDetailPage() {
                     to="/"
                     className="flex w-full bg-primary-lightgreen text-primary-green px-1.5 py-2 items-center justify-center rounded-lg"
                 >
-                    새로운 일기 작성하기
+                    {GO_YO_WRITE_DIARY}
                 </Link>
                 <button
                     className="flex w-full bg-primary-lightred text-primary-red  px-1.5 py-2 items-center justify-center rounded-lg"
                     onClick={removeDiary}
                 >
-                    현재 일기 삭제하기
+                    {DELETE_CURRENT_DIARY}
                 </button>
             </div>
         </div>
