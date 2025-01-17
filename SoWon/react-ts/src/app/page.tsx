@@ -45,10 +45,10 @@ const DiaryWriter = () => {
                         <button
                             key={index}
                             type="button"
-                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] ${
+                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 ${
                                 emotion === e
-                                    ? 'p-2 bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600'
-                                    : 'p-02 bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
+                                    ? 'bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600'
+                                    : 'bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
                             } cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm`}
                             onClick={() => setEmotion(e)}
                         >
@@ -61,10 +61,10 @@ const DiaryWriter = () => {
                         <button
                             key={index}
                             type="button"
-                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] ${
+                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 ${
                                 weather === w
-                                    ? 'p-2 bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600'
-                                    : 'p-02 bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
+                                    ? 'bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600'
+                                    : 'bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
                             } cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm`}
                             onClick={() => setWeather(w)}
                         >
