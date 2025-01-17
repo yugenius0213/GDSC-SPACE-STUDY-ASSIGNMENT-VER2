@@ -1,18 +1,29 @@
-import { useState, MouseEvent } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
-    const [weather, setWeather] = useState<Diary['weather'] | undefined>('')
-    const [emotion, setEmotion] = useState<Diary['emotion'] | undefined>('')
+    const [weather, setWeather] = useState<Diary['weather'] | undefined>()
+    const [emotion, setEmotion] = useState<Diary['emotion'] | undefined>()
+    const [isValid, setIsValid] = useState<boolean>(false)
 
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
     const weathers: Diary['weather'][] = ['cloud', 'rain', 'snow', 'sunny']
 
     const minTitleLength: number = 3
     const minContentLength: number = 6
+
+    useEffect(() => {
+        const hasInvalidFields =
+            title.length < minTitleLength ||
+            content.length < minContentLength ||
+            weather === undefined ||
+            emotion === undefined
+
+        setIsValid(!hasInvalidFields)
+    }, [title, content, weather, emotion])
 
     // 일기 제출 핸들러
     const handleSave = (e: MouseEvent<HTMLButtonElement>) => {
@@ -68,20 +79,20 @@ const DiaryWriter = () => {
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="오늘 당신의 하루는 어땠나요?"
             ></textarea>
-            {title.length < minTitleLength || content.length < minContentLength || weather === '' || emotion === '' ? (
-                <button
-                    type="button"
-                    className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600"
-                >
-                    일기를 더 자세히 적어볼까요?
-                </button>
-            ) : (
+            {isValid ? (
                 <button
                     type="submit"
                     className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600"
                     onClick={(e) => handleSave(e)}
                 >
                     일기를 저장해 보아요
+                </button>
+            ) : (
+                <button
+                    type="button"
+                    className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600"
+                >
+                    일기를 더 자세히 적어볼까요?
                 </button>
             )}
         </div>
