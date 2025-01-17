@@ -66,7 +66,7 @@ function DiaryWriter() {
                 <div className="flex flex-row gap-1">
                     {emotions.map((emotion, index) => (
                         <button
-                            className={`flex ${emotionClicked == emotion ? 'bg-primary-lightgreen text-primary-green hover:border-primary-green' : 'hover:border-primary-darkgray hover:text-primary-darkgray'}  cusor-pointer items-center justify-center rounded-lg bg-primary-lightgray px-2 text-primary-gray transition-colors border border-transparent ease-in hover:border active:translate-y-[1px]`}
+                            className={`btn ${emotionClicked == emotion ? 'green-btn' : 'gray-btn'} px-2 active:translate-y-[1px] transition-colors ease-in`}
                             key={index}
                             onClick={() => setEmotionClicked(emotion)}
                         >
@@ -77,7 +77,7 @@ function DiaryWriter() {
                 <div className="flex flex-row gap-1">
                     {weather.map((weather, index) => (
                         <button
-                            className={`flex ${weatherClicked == weather ? 'bg-primary-lightblue text-primary-blue hover:border-primary-blue' : 'hover:border-primary-darkgray hover:text-primary-darkgray'} cusor-pointer items-center justify-center rounded-lg bg-primary-lightgray px-2 text-primary-gray transition-colors border border-transparent ease-in hover:border active:translate-y-[1px]`}
+                            className={`btn ${weatherClicked == weather ? 'blue-btn' : 'gray-btn'} px-2 active:translate-y-[1px] transition-colors ease-in`}
                             key={index}
                             onClick={() => setWeatherClicked(weather)}
                         >
@@ -94,7 +94,7 @@ function DiaryWriter() {
             ></textarea>
 
             <button
-                className={`w-full ${isValid ? 'bg-primary-lightgreen text-primary-green hover:border-primary-green' : 'hover:border-primary-darkgray hover:text-primary-darkgray'} border border-transparent hover:border rounded-lg py-2 text-lg transition-colors ease-in bg-primary-lightgray text-primary-gray`}
+                className={`w-full btn ${isValid ? 'green-btn' : 'gray-btn'} py-2 text-lg transition-colors ease-in`}
                 onClick={saveDiary}
             >
                 {isValid ? VALID_SAVE_BUTTON_TEXT : INVALID_SAVE_BUTTON_TEXT}
@@ -120,9 +120,7 @@ function DiaryViewer() {
             )}
 
             <Link to="/emotions">
-                <button className="w-full rounded-lg  py-2 text-lg bg-primary-lightgreen text-primary-green hover:border-primary-green border border-transparent">
-                    {VIEW_EMOTIONS_BUTTON_TEXT}
-                </button>
+                <button className="w-full btn py-2 text-lg green-btn ">{VIEW_EMOTIONS_BUTTON_TEXT}</button>
             </Link>
         </div>
     )
