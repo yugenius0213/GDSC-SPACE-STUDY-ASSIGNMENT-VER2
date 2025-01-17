@@ -35,6 +35,17 @@ function DiaryWriter() {
                         </button>
                     ))}
                 </div>
+                <div className="flex flex-row gap-1">
+                    {weathers.map((selectedWeather, index) => (
+                        <button
+                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm ${weather == selectedWeather ? 'bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600' : 'bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'}`}
+                            key={index}
+                            onClick={() => setWeather(selectedWeather)}
+                        >
+                            {selectedWeather}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     )
