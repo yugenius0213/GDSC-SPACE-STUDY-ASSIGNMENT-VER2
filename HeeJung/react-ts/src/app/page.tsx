@@ -23,6 +23,19 @@ function DiaryWriter() {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="제목을 적어보세요"
             />
+            <div className="flex flex-col gap-2 pt-4">
+                <div className="flex flex-row gap-1">
+                    {emotions.map((selectedEmotion, index) => (
+                        <button
+                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm ${emotion == selectedEmotion ? 'bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600' : 'bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'}`}
+                            key={index}
+                            onClick={() => setEmotion(selectedEmotion)}
+                        >
+                            {selectedEmotion}
+                        </button>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
