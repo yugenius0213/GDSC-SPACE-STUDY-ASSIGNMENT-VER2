@@ -3,6 +3,9 @@ import { useState } from 'react';
 export default function DiaryPage() {
   const emotions = ['bad', 'soso', 'good', 'great', 'awesome'];
   const weathers = ['cloud', 'rain', 'snow', 'sunny'];
+  
+  const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null);
+  const [selectedWeather, setSelectedWeather] = useState<string | null>(null);
 
   return (
     <div className="flex flex-col items-center justify-center gap-10 h-full w-full md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3 mx-auto">
@@ -18,6 +21,7 @@ export default function DiaryPage() {
               <button
                 key={emotion}
                 type="button"
+                onClick={() => setSelectedEmotion(emotion)}
                 className="text-xs"
               >
                 {emotion}
@@ -29,6 +33,7 @@ export default function DiaryPage() {
               <button
                 key={weather}
                 type="button"
+                onClick={() => setSelectedWeather(weather)}
                 className="text-xs"
               >
                 {weather}
