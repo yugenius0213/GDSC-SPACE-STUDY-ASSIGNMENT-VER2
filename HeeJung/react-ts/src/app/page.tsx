@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react'
+import { Diary } from '../interface/diary'
+import { Link } from 'react-router-dom'
+
 function DiaryWriter() {
     const [title, setTitle] = useState<string>('')
     const [emotion, setEmotion] = useState<Diary['emotion'] | undefined>()
