@@ -13,7 +13,7 @@ export default function DiaryPage() {
         <div className="flex flex-col gap-4 flex-grow">
           <input
             type="text"
-            className="mt-2 mb-6 text-2xl"
+            className="mt-2 mb-6 text-2xl border-0 focus:border focus:border-gray-100 focus:outline-none focus:ring-0"
             placeholder="제목을 적어보세요."
           />
           <div className="flex gap-[2px]">
@@ -41,7 +41,7 @@ export default function DiaryPage() {
             ))}
           </div>
           <textarea
-            className="resize-none flex-grow"
+            className="resize-none flex-grow whitespace-nowrap border-0 focus:border focus:border-gray-100 focus:outline-none focus:ring-0"
             placeholder="오늘 당신의 하루는 어땠나요?"
           />
         </div>
@@ -52,12 +52,12 @@ export default function DiaryPage() {
 
       <div className="flex flex-col justify-between gap-4 p-4 rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem] w-full">
         <div>
-          <h1 className="text-xl mt-2">기록된 일기</h1>
+          <h1 className="text-xl text-emerald-600 mt-2">기록된 일기</h1>
           <div className="flex flex-col overflow-y-auto gap-2 w-full h-96 max-h-96">
-            <p className="text-sm mt-[250px]">일기를 적어보세요</p>
+            <p className="text-gray-400 text-sm mt-[250px]">일기를 적어보세요</p>
           </div>
         </div>
-        <button type="button" className="w-full p-2 bg-gray-100 text-gray-500 rounded-lg text-sm">
+        <button type="button" className="w-full p-2 bg-emerald-100 text-emerald-500 rounded-lg text-sm">
           감정 모아보기
         </button>
       </div>
