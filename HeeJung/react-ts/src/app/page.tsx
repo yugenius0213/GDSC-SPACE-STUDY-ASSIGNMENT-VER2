@@ -47,6 +47,13 @@ function DiaryWriter() {
                     ))}
                 </div>
             </div>
+            <textarea
+                className="p-2 mt-4 rounded-md transition ring-gray-100 h-full resize-none focus:outline-none focus:ring-1 placeholder:text-gray-400"
+                value={contents}
+                onChange={(e) => setContents(e.target.value)}
+                placeholder="오늘 당신의 하루는 어땠나요?"
+                maxLength={1000}
+            />
         </div>
     )
 }
