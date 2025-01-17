@@ -22,7 +22,11 @@ export default function DiaryPage() {
                 key={emotion}
                 type="button"
                 onClick={() => setSelectedEmotion(emotion)}
-                className="px-1.5 py-[1px] rounded-md border text-xs min-w-[38px] bg-gray-100 text-gray-400 border-gray-200"
+                className={`${
+                  selectedEmotion === emotion 
+                    ? 'bg-emerald-500 text-white border-emerald-500' 
+                    : 'bg-gray-100 text-gray-400 border-gray-200'
+                } px-1.5 py-[1px] rounded-md border transition-all duration-200 text-xs min-w-[38px]`}
               >
                 {emotion}
               </button>
@@ -34,7 +38,11 @@ export default function DiaryPage() {
                 key={weather}
                 type="button"
                 onClick={() => setSelectedWeather(weather)}
-                className="px-1.5 py-[1px] rounded-md border text-xs min-w-[38px] bg-gray-100 text-gray-400 border-gray-200"
+                className={`${
+                  selectedWeather === weather 
+                    ? 'bg-sky-500 text-white border-sky-500' 
+                    : 'bg-gray-100 text-gray-400 border-gray-200'
+                } px-1.5 py-[1px] rounded-md border transition-all duration-200 text-xs min-w-[38px]`}
               >
                 {weather}
               </button>
@@ -45,7 +53,10 @@ export default function DiaryPage() {
             placeholder="오늘 당신의 하루는 어땠나요?"
           />
         </div>
-        <button type="submit" className="w-full p-2 bg-gray-100 text-gray-500 rounded-lg text-sm">
+        <button
+          type="submit"
+          className="w-full p-2 bg-gray-100 text-gray-500 rounded-lg text-sm"
+        >
           일기를 더 자세히 적어볼까요?
         </button>
       </form>
