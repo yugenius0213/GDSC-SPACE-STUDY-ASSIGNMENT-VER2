@@ -16,7 +16,7 @@ const DiaryWriter = () => {
 
     return (
         <>
-            <div className="flex flex-col gap-4 p-4 justify-between h-full w-1/2 border border-gray-200 rounded-lg">
+            <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
                 <input
                     className="rounded-lg p-2 text-2xl mt-4
                     focus:outline-none focus:ring-1 focus:ring-gray-200"
@@ -74,10 +74,10 @@ const DiaryWriter = () => {
 }
 export default function DiaryHomePage() {
     return (
-        <div className="flex flex-row items-center justify-center h-2/3 w-2/3 gap-10">
+        <div className="flex flex-col items-center justify-center h-full gap-10 md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3">
             <DiaryWriter />
 
-            <div className="flex flex-col gap-4 p-4 justify-between h-full w-1/3 border border-gray-200 rounded-lg">
+            <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
                 <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
                 <div className="text-gray-400">일기를 적어보세요</div>
                 <button className="bg-green-100 p-2 rounded-lg text-green-600">감정 모아 보기</button>
