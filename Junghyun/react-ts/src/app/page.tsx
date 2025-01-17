@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Diary } from '../interface/diary'
+import DiaryCard from '../components/DiaryCard'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -90,7 +91,8 @@ export default function DiaryHomePage() {
 
             <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
                 <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
-                <div className="text-gray-400">일기를 적어보세요</div>
+                {/* <div className="text-gray-400">일기를 적어보세요</div> */}
+                <DiaryCard />
                 <button className="bg-green-100 p-2 rounded-lg text-green-600">감정 모아 보기</button>
             </div>
         </div>
