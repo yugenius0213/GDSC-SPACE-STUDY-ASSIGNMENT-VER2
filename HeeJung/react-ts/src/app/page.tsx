@@ -81,7 +81,11 @@ function DiaryRecord() {
 
 export default function DiaryHomePage() {
     return (
-        <DiaryWriter />
-        <DiaryRecord />
+        <div className="flex h-screen w-full items-center justify-center bg-white">
+            <div className="flex flex-col items-center justify-center gap-10 h-full md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3">
+                <DiaryWriter />
+                <DiaryRecord />
+            </div>
+        </div>
     )
 }
