@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 export default function DiaryPage() {
-  const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null);
-  const [selectedWeather, setSelectedWeather] = useState<string | null>(null);
+  const emotions = ['bad', 'soso', 'good', 'great', 'awesome'];
+  const weathers = ['cloud', 'rain', 'snow', 'sunny'];
 
   return (
     <div className="flex flex-col items-center justify-center gap-10 h-full w-full md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3 mx-auto">
@@ -14,11 +14,10 @@ export default function DiaryPage() {
             placeholder="제목을 적어보세요."
           />
           <div className="flex gap-3">
-            {['bad', 'soso', 'good', 'great', 'awesome'].map((emotion) => (
+            {emotions.map((emotion) => (
               <button
                 key={emotion}
                 type="button"
-                onClick={() => setSelectedEmotion(emotion)}
                 className="text-xs"
               >
                 {emotion}
@@ -26,11 +25,10 @@ export default function DiaryPage() {
             ))}
           </div>
           <div className="flex gap-3 -mt-1 mb-6">
-            {['cloud', 'rain', 'snow', 'sunny'].map((weather) => (
+            {weathers.map((weather) => (
               <button
                 key={weather}
                 type="button"
-                onClick={() => setSelectedWeather(weather)}
                 className="text-xs"
               >
                 {weather}
@@ -42,10 +40,7 @@ export default function DiaryPage() {
             placeholder="오늘 당신의 하루는 어땠나요?"
           />
         </div>
-        <button
-          type="submit"
-          className="w-full text-sm"
-        >
+        <button type="submit" className="w-full text-sm">
           일기를 더 자세히 적어볼까요?
         </button>
       </form>
