@@ -4,10 +4,6 @@ import { dateFormatting } from '../../utils/dateFormat'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
 import { DELETE_CURRENT_DIARY, GO_YO_WRITE_DIARY } from '../../constants/diaryOutput'
 
-type DiaryDetailPageParams = {
-    id: string
-}
-
 export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
     const diary = useDiaryValue().find((diary) => diary.id === id)

@@ -11,7 +11,7 @@ import {
     INVALID_SAVE_BUTTON_TEXT,
     VALID_SAVE_BUTTON_TEXT,
 } from './constants/diaryInputs'
-import { DIARY_LIST_TITLE, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
+import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
 
 function DiaryWriter() {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
@@ -116,7 +116,7 @@ function DiaryViewer() {
                     ))}
                 </div>
             ) : (
-                <div className="text-primary-gray">일기를 적어보세요</div>
+                <div className="text-primary-gray">{EMPTY_DIARY}</div>
             )}
 
             <Link to="/emotions">
