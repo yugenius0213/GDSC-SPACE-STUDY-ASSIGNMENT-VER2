@@ -1,5 +1,6 @@
 import { useState, MouseEvent } from 'react'
 import { Diary } from '../interface/diary'
+import { Link } from 'react-router-dom'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -35,9 +36,9 @@ const DiaryWriter = () => {
                             type="button"
                             className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] ${
                                 emotion === e
-                                    ? 'p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600'
-                                    : 'p-02 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
-                            } px-1.5 py-0.5 text-sm`}
+                                    ? 'p-2 bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600'
+                                    : 'p-02 bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
+                            } cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm`}
                             onClick={() => setEmotion(e)}
                         >
                             {e}
@@ -51,9 +52,9 @@ const DiaryWriter = () => {
                             type="button"
                             className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] ${
                                 weather === w
-                                    ? 'p-2 cursor-pointer transition-colors ease-in bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600'
-                                    : 'p-02 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
-                            } px-1.5 py-0.5 text-sm`}
+                                    ? 'p-2 bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600'
+                                    : 'p-02 bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
+                            } cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm`}
                             onClick={() => setWeather(w)}
                         >
                             {w}
@@ -67,7 +68,7 @@ const DiaryWriter = () => {
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="오늘 당신의 하루는 어땠나요?"
             ></textarea>
-            {title.length < minTitleLength || content.length < minContentLength ? (
+            {title.length < minTitleLength || content.length < minContentLength || weather === '' || emotion === '' ? (
                 <button
                     type="button"
                     className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600"
@@ -92,9 +93,14 @@ const DiaryHistory = () => {
         <div className="w-full flex flex-col items-start gap-4 p-4 justify-between rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl mt-5 text-emerald-600">기록된 일기</h1>
             <div className="flex items-center justify-center text-gray-400">일기를 적어보세요</div>
-            <a className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600">
-                감정 모아보기
-            </a>
+            <Link to="/emotions">
+                <button
+                    type="button"
+                    className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600"
+                >
+                    감정 모아보기
+                </button>
+            </Link>
         </div>
     )
 }
