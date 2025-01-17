@@ -4,8 +4,12 @@ export default function DiaryPage() {
   const emotions = ['bad', 'soso', 'good', 'great', 'awesome'];
   const weathers = ['cloud', 'rain', 'snow', 'sunny'];
   
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null);
   const [selectedWeather, setSelectedWeather] = useState<string | null>(null);
+
+  const isFormValid = title && content && selectedEmotion && selectedWeather;
 
   return (
     <div className="flex flex-col items-center justify-center gap-10 h-full w-full md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3 mx-auto">
@@ -13,6 +17,8 @@ export default function DiaryPage() {
         <div className="flex flex-col gap-4 flex-grow">
           <input
             type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="mt-2 mb-6 text-2xl border-0 focus:border focus:border-gray-100 focus:outline-none focus:ring-0"
             placeholder="제목을 적어보세요."
           />
@@ -49,13 +55,20 @@ export default function DiaryPage() {
             ))}
           </div>
           <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             className="resize-none flex-grow whitespace-nowrap border-0 focus:border focus:border-gray-100 focus:outline-none focus:ring-0"
             placeholder="오늘 당신의 하루는 어땠나요?"
           />
         </div>
         <button
           type="submit"
-          className="w-full p-2 bg-gray-100 text-gray-500 rounded-lg text-sm"
+          disabled={!isFormValid}
+          className={`w-full p-2 rounded-lg text-sm ${
+            isFormValid 
+              ? 'bg-emerald-100 text-emerald-500' 
+              : 'bg-gray-100 text-gray-500'
+          }`}
         >
           일기를 더 자세히 적어볼까요?
         </button>
