@@ -116,11 +116,11 @@ const DiaryHistory = () => {
 
 export default function DiaryHomePage() {
     return (
-        <main className="min-h-screen max-h-screen h-screen w-full bg-white flex items-center justify-center">
+        <div className="min-h-screen max-h-screen h-screen w-full bg-white flex items-center justify-center">
             <div className="flex flex-col items-center justify-center gap-10 h-full md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3">
                 <DiaryWriter />
                 <DiaryHistory />
             </div>
-        </main>
+        </div>
     )
 }
