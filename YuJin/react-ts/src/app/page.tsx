@@ -55,9 +55,9 @@ function DiaryWriter() {
         setWeatherClicked(undefined)
     }
     return (
-        <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3">
+        <div className="border-bg-lightgray flex h-2/3 w-full flex-col rounded-lg border p-4">
             <input
-                className="w-full p-2 text-2xl hover:border hover:rounded-lg focus:outline-none mt-4"
+                className="mt-4 w-full p-2 text-2xl rounded-lg ring-primary-lightgray focus:ring-1 focus:outline-none"
                 placeholder={DIARY_TITLE_PLACEHOLDER}
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
@@ -66,7 +66,7 @@ function DiaryWriter() {
                 <div className="flex flex-row gap-1">
                     {emotions.map((emotion, index) => (
                         <button
-                            className={`flex ${emotionClicked == emotion ? 'bg-primary-lightgreen text-primary-green' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
+                            className={`flex ${emotionClicked == emotion ? 'bg-primary-lightgreen text-primary-green hover:border-primary-green' : 'hover:border-primary-darkgray hover:text-primary-darkgray'}  cusor-pointer items-center justify-center rounded-lg bg-primary-lightgray px-2 text-primary-gray transition-colors border border-transparent ease-in hover:border active:translate-y-[1px]`}
                             key={index}
                             onClick={() => setEmotionClicked(emotion)}
                         >
@@ -77,7 +77,7 @@ function DiaryWriter() {
                 <div className="flex flex-row gap-1">
                     {weather.map((weather, index) => (
                         <button
-                            className={`flex ${weatherClicked == weather ? 'bg-primary-lightblue text-primary-blue' : 'bg-primary-lightgray text-primary-gray'} px-2 items-center justify-center rounded-lg`}
+                            className={`flex ${weatherClicked == weather ? 'bg-primary-lightblue text-primary-blue hover:border-primary-blue' : 'hover:border-primary-darkgray hover:text-primary-darkgray'} cusor-pointer items-center justify-center rounded-lg bg-primary-lightgray px-2 text-primary-gray transition-colors border border-transparent ease-in hover:border active:translate-y-[1px]`}
                             key={index}
                             onClick={() => setWeatherClicked(weather)}
                         >
@@ -87,14 +87,14 @@ function DiaryWriter() {
                 </div>
             </div>
             <textarea
-                className="w-full h-full focus:border focus:rounded-lg p-2 focus:outline-none mb-4 "
+                className="resize-none mb-4 h-full w-full p-2 focus:rounded-lg focus:border focus:outline-none ring-primary-lightgray focus:ring-1"
                 placeholder={DIARY_CONTENT_PLACEHOLDER}
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
             ></textarea>
 
             <button
-                className={`w-full ${isValid ? 'bg-primary-lightgreen text-primary-green' : 'bg-primary-lightgray text-primary-gray'} rounded-lg py-2 text-lg `}
+                className={`w-full ${isValid ? 'bg-primary-lightgreen text-primary-green hover:border-primary-green' : 'hover:border-primary-darkgray hover:text-primary-darkgray'} border border-transparent hover:border rounded-lg py-2 text-lg transition-colors ease-in bg-primary-lightgray text-primary-gray`}
                 onClick={saveDiary}
             >
                 {isValid ? VALID_SAVE_BUTTON_TEXT : INVALID_SAVE_BUTTON_TEXT}
@@ -107,10 +107,10 @@ function DiaryViewer() {
     const diaryList = useDiaryValue()
     const isDiaryExsists = diaryList.length > 0
     return (
-        <div className="w-full border border-bg-gray p-4 rounded-lg flex flex-col h-2/3 flex justify-between">
-            <div className="text-xl text-primary-green text-bold mt-4">{DIARY_LIST_TITLE}</div>
+        <div className="border-bg-gray flex h-2/3 w-full flex-col justify-between rounded-lg border p-4">
+            <div className="text-bold mt-4 text-xl text-primary-green">{DIARY_LIST_TITLE}</div>
             {isDiaryExsists ? (
-                <div className="flex flex-col py-4 gap-2 max-h-96 overflow-y-auto h-full justify-center ">
+                <div className="flex h-full max-h-96 flex-col justify-center gap-2 overflow-y-auto py-4">
                     {diaryList.map((diary, index) => (
                         <DiaryViewerBox diary={diary} key={index} />
                     ))}
@@ -120,7 +120,7 @@ function DiaryViewer() {
             )}
 
             <Link to="/emotions">
-                <button className="w-full bg-primary-lightgreen rounded-lg py-2 text-lg text-primary-green">
+                <button className="w-full rounded-lg  py-2 text-lg bg-primary-lightgreen text-primary-green hover:border-primary-green border border-transparent">
                     {VIEW_EMOTIONS_BUTTON_TEXT}
                 </button>
             </Link>
@@ -129,7 +129,7 @@ function DiaryViewer() {
 }
 export default function DiaryHomePage() {
     return (
-        <div className="flex flex-col h-full gap-10 items-center justify-center md:grid md:grid-cols-2 md:md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3 ">
+        <div className="flex h-full flex-col items-center justify-center gap-10 md:grid md:w-4/5 md:grid-cols-2 md:md:grid-cols-[3fr,2fr] lg:w-2/3">
             <DiaryWriter />
             <DiaryViewer />
         </div>

@@ -8,7 +8,7 @@ export const DiaryViewerBox = ({ diary }: { diary: Diary }) => {
     const formattedDate = dateFormatting(diary.date)
     return (
         <Link to={`/detail/${diary.id}`}>
-            <div className="border rounded-lg p-3 flex flex-col gap-2 ">
+            <div className="border rounded-lg p-3 flex flex-col gap-2 hover:bg-primary-lightgray">
                 <div className="text-lg">{diary.title}</div>
                 <div className="flex flex-row justify-between">
                     <div className="text-sm text-primary-gray">{formattedDate}</div>
