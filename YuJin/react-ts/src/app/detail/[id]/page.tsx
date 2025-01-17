@@ -23,15 +23,15 @@ export default function DiaryDetailPage() {
             <div className="flex flex-col gap-4  my-9">
                 <div className="text-4xl font-medium">{diary?.title}</div>
                 <div className="flex flex-row gap-2 ">
-                    <div className="text-sm w-full flex bg-primary-lightgray text-primary-gray px-1.5 py-0.5 items-center justify-center rounded-lg">
+                    <div className="text-sm w-full flex px-1.5 py-0.5 items-center justify-center btn gray-btn">
                         {formattedDate}
                     </div>
-                    <div className="text-sm w-full flex bg-primary-lightgray text-primary-gray px-1.5 py-0.5 items-center justify-center rounded-lg">
+                    <div className="text-sm w-full flex  px-1.5 py-0.5 items-center justify-center btn gray-btn">
                         {diary?.weather}
                     </div>
                     <Link
                         to={`/emotions/${diary?.emotion}`}
-                        className="text-sm w-full flex bg-primary-lightgray text-primary-gray px-1.5 py-0.5 items-center justify-center rounded-lg"
+                        className="text-sm w-full flex px-1.5 py-0.5 items-center justify-center btn gray-btn"
                     >
                         {diary?.emotion}
                     </Link>
@@ -40,14 +40,11 @@ export default function DiaryDetailPage() {
 
             <div className="h-2/3"> {diary?.content}</div>
             <div className="flex flex-row gap-2">
-                <Link
-                    to="/"
-                    className="flex w-full bg-primary-lightgreen text-primary-green px-1.5 py-2 items-center justify-center rounded-lg"
-                >
+                <Link to="/" className="flex w-full px-1.5 py-2 items-center justify-center btn green-btn">
                     {GO_YO_WRITE_DIARY}
                 </Link>
                 <button
-                    className="flex w-full bg-primary-lightred text-primary-red  px-1.5 py-2 items-center justify-center rounded-lg"
+                    className="flex w-full  px-1.5 py-2 items-center justify-center btn red-btn"
                     onClick={removeDiary}
                 >
                     {DELETE_CURRENT_DIARY}
