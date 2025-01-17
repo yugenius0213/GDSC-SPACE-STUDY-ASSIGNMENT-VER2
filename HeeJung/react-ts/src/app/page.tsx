@@ -54,6 +54,12 @@ function DiaryWriter() {
                 placeholder="오늘 당신의 하루는 어땠나요?"
                 maxLength={1000}
             />
+            <button
+                className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in ${isValid ? 'bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600' : 'bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'}`}
+                disabled={!isValid}
+            >
+                {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
+            </button>
         </div>
     )
 }
