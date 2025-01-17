@@ -1,24 +1,87 @@
+import { useState } from 'react'
+import { Diary } from '../interface/diary'
+
 const DiaryWriter = () => {
+    const [title, setTitle] = useState<string>('')
+    const [content, setContent] = useState<string>('')
+    const [emotion, setEmotion] = useState<Diary['emotion']>()
+    const [weather, setWeather] = useState<Diary['weather']>()
+
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value)
+    }
+    const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setContent(e.target.value)
+    }
+
     return (
-        <div className="flex flex-row items-center justify-center h-screen gap-10">
-            <div className="flex flex-col gap-4">
-                <input placeholder="제목을 적어보세요" />
-                <div>
-                    <button>bad</button>
-                    <button>soso</button>
-                    <button>good</button>
+        <>
+            <div className="flex flex-col gap-4 p-4 justify-between h-full w-1/2 border border-gray-200 rounded-lg">
+                <input
+                    className="rounded-lg p-2 text-2xl mt-4
+                    focus:outline-none focus:ring-1 focus:ring-gray-200"
+                    value={title}
+                    onChange={handleTitleChange}
+                    placeholder="제목을 적어보세요"
+                />
+                <div className="flex flex-col gap-2">
+                    <div className="flex flex-row gap-1 text-sm">
+                        {(['bad', 'soso', 'good', 'great', 'awesome'] as Diary['emotion'][]).map((emotionType) => (
+                            <button
+                                key={emotionType}
+                                onClick={() => setEmotion(emotionType)}
+                                className={`border border-transparent p-1 rounded-lg
+                                    ${
+                                        emotion === emotionType
+                                            ? 'bg-green-200 text-green-600 hover:border-green-600'
+                                            : 'bg-gray-200  text-gray-500 hover:border-gray-600 hover:text-gray-600'
+                                    }
+                                `}
+                            >
+                                {emotionType}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="flex flex-row gap-1 text-sm">
+                        {(['sunny', 'cloud', 'rain', 'snow'] as Diary['weather'][]).map((weatherType) => (
+                            <button
+                                key={weatherType}
+                                onClick={() => setWeather(weatherType)}
+                                className={`border border-transparent p-1 rounded-lg
+                                ${
+                                    weather === weatherType
+                                        ? 'bg-blue-200 text-blue-600 hover:border-blue-600'
+                                        : 'bg-gray-200  text-gray-500 hover:border-gray-600 hover:text-gray-600'
+                                }
+                            `}
+                            >
+                                {weatherType}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-                <textarea placeholder="오늘 당신의 하루는 어땠나요?" />
-                <button>일기를 더 자세히 적어볼까요?</button>
+                <textarea
+                    className="rounded-lg p-2 h-1/2 text-m
+                    focus:outline-none focus:ring-1 focus:ring-gray-200"
+                    value={content}
+                    onChange={handleContentChange}
+                    placeholder="오늘 당신의 하루는 어땠나요?"
+                />
+                <button className="bg-gray-200 p-2 rounded-lg text-gray-500">일기를 더 자세히 적어볼까요?</button>
             </div>
-            <div className="flex flex-col gap-4">
-                <h1>기록된 일기</h1>
-                <div>일기를 적어보세요</div>
-                <button>감정 모아보기</button>
-            </div>
-        </div>
+        </>
     )
 }
 export default function DiaryHomePage() {
-    return <DiaryWriter />
+    return (
+        <div className="flex flex-row items-center justify-center h-2/3 w-2/3 gap-10">
+            <DiaryWriter />
+
+            <div className="flex flex-col gap-4 p-4 justify-between h-full w-1/3 border border-gray-200 rounded-lg">
+                <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
+                <div className="text-gray-400">일기를 적어보세요</div>
+                <button className="bg-green-100 p-2 rounded-lg text-green-600">감정 모아 보기</button>
+            </div>
+        </div>
+    )
 }
