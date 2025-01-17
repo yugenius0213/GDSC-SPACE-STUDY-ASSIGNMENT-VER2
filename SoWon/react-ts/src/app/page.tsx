@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
-    const [weather, setWeather] = useState<Diary['weather'] | ''>('')
-    const [emotion, setEmotion] = useState<Diary['emotion'] | ''>('')
+    const [weather, setWeather] = useState<Diary['weather'] | undefined>('')
+    const [emotion, setEmotion] = useState<Diary['emotion'] | undefined>('')
 
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
     const weathers: Diary['weather'][] = ['cloud', 'rain', 'snow', 'sunny']
