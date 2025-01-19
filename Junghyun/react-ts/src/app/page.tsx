@@ -5,8 +5,8 @@ import DiaryCard from '../components/DiaryCard'
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
-    const [emotion, setEmotion] = useState<Diary['emotion']>()
-    const [weather, setWeather] = useState<Diary['weather']>()
+    const [emotion, setEmotion] = useState<Diary['emotion'] | undefined>()
+    const [weather, setWeather] = useState<Diary['weather'] | undefined>()
     const [isValid, setIsValid] = useState<boolean>(false)
 
     useEffect(() => {
@@ -37,12 +37,8 @@ const DiaryWriter = () => {
                             <button
                                 key={emotionType}
                                 onClick={() => setEmotion(emotionType)}
-                                className={`border border-transparent p-1 rounded-lg
-                                    ${
-                                        emotion === emotionType
-                                            ? 'bg-green-200 text-green-600 hover:border-green-600'
-                                            : 'bg-gray-200  text-gray-500 hover:border-gray-600 hover:text-gray-600'
-                                    }
+                                className={`p-1
+                                    ${emotion === emotionType ? 'green-btn' : 'gray-btn'}
                                 `}
                             >
                                 {emotionType}
@@ -54,12 +50,8 @@ const DiaryWriter = () => {
                             <button
                                 key={weatherType}
                                 onClick={() => setWeather(weatherType)}
-                                className={`border border-transparent p-1 rounded-lg
-                                ${
-                                    weather === weatherType
-                                        ? 'bg-blue-200 text-blue-600 hover:border-blue-600'
-                                        : 'bg-gray-200  text-gray-500 hover:border-gray-600 hover:text-gray-600'
-                                }
+                                className={`p-1
+                                ${weather === weatherType ? 'blue-btn' : 'gray-btn'}
                             `}
                             >
                                 {weatherType}
@@ -75,8 +67,8 @@ const DiaryWriter = () => {
                     placeholder="오늘 당신의 하루는 어땠나요?"
                 />
                 <button
-                    className={`p-2 rounded-lg
-                    ${isValid ? 'bg-green-200 text-green-600' : 'bg-gray-200 text-gray-500'}`}
+                    className={`p-2
+                    ${isValid ? 'green-btn' : 'gray-btn'}`}
                 >
                     {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
                 </button>
@@ -93,7 +85,7 @@ export default function DiaryHomePage() {
                 <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
                 {/* <div className="text-gray-400">일기를 적어보세요</div> */}
                 <DiaryCard />
-                <button className="bg-green-100 p-2 rounded-lg text-green-600">감정 모아 보기</button>
+                <button className="green-btn p-2">감정 모아 보기</button>
             </div>
         </div>
     )
