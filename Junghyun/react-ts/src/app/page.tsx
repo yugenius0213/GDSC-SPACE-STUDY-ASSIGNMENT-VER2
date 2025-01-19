@@ -10,7 +10,7 @@ const DiaryWriter = () => {
     const [isValid, setIsValid] = useState<boolean>(false)
 
     useEffect(() => {
-        const isInvalid = title.length < 1 || content.length < 3 || !emotion || !weather
+        const isInvalid = title.length < 3 || content.length < 6 || !emotion || !weather
         setIsValid(!isInvalid)
     }, [title, content, emotion, weather])
 
@@ -25,8 +25,7 @@ const DiaryWriter = () => {
         <>
             <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
                 <input
-                    className="rounded-lg p-2 text-2xl mt-4
-                    focus:outline-none focus:ring-1 focus:ring-gray-200"
+                    className="text-2xl mt-4 input-box"
                     value={title}
                     onChange={handleTitleChange}
                     placeholder="제목을 적어보세요"
@@ -60,8 +59,7 @@ const DiaryWriter = () => {
                     </div>
                 </div>
                 <textarea
-                    className="rounded-lg p-2 h-1/2 text-m
-                    focus:outline-none focus:ring-1 focus:ring-gray-200"
+                    className="h-1/2 text-m input-box"
                     value={content}
                     onChange={handleContentChange}
                     placeholder="오늘 당신의 하루는 어땠나요?"
