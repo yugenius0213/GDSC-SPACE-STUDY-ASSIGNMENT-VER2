@@ -10,7 +10,7 @@ const DiaryWriter = () => {
     const [isValid, setIsValid] = useState<boolean>(false)
 
     useEffect(() => {
-        const isInvalid = title.length < 1 || content.length < 3 || !emotion || !weather
+        const isInvalid = title.length < 2 || content.length < 6 || !emotion || !weather
         setIsValid(!isInvalid)
     }, [title, content, emotion, weather])
 
@@ -19,6 +19,36 @@ const DiaryWriter = () => {
     }
     const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setContent(e.target.value)
+    }
+    const handleSaveDiary = () => {
+        if (!isValid) return
+
+        const newDiary: Diary = {
+            id: crypto.randomUUID(),
+            date: new Date(),
+            title,
+            content,
+            emotion: emotion!,
+            weather: weather!,
+            views: 1,
+        }
+
+        try {
+            const savedDiaries: Diary[] = JSON.parse(localStorage.getItem('diaries') || '[]')
+
+            localStorage.setItem('diaries', JSON.stringify([...savedDiaries, newDiary]))
+            console.log(newDiary)
+
+            setTitle('')
+            setContent('')
+            setEmotion(undefined)
+            setWeather(undefined)
+
+            console.log('일기 저장 성공')
+        } catch (error) {
+            console.error('일기 저장 실패', error)
+            alert('일기 저장 실패. 다시 시도 하십시오.')
+        }
     }
 
     return (
@@ -77,6 +107,7 @@ const DiaryWriter = () => {
                 <button
                     className={`p-2 rounded-lg
                     ${isValid ? 'bg-green-200 text-green-600' : 'bg-gray-200 text-gray-500'}`}
+                    onClick={handleSaveDiary}
                 >
                     {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
                 </button>
