@@ -5,12 +5,13 @@ import DiaryCard from '../components/DiaryCard'
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
-    const [emotion, setEmotion] = useState<Diary['emotion']>()
-    const [weather, setWeather] = useState<Diary['weather']>()
+    const [emotion, setEmotion] = useState<Diary['emotion'] | undefined>()
+    const [weather, setWeather] = useState<Diary['weather'] | undefined>()
     const [isValid, setIsValid] = useState<boolean>(false)
 
     useEffect(() => {
         const isInvalid = title.length < 2 || content.length < 6 || !emotion || !weather
+
         setIsValid(!isInvalid)
     }, [title, content, emotion, weather])
 
@@ -55,8 +56,7 @@ const DiaryWriter = () => {
         <>
             <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
                 <input
-                    className="rounded-lg p-2 text-2xl mt-4
-                    focus:outline-none focus:ring-1 focus:ring-gray-200"
+                    className="text-2xl mt-4 input-box"
                     value={title}
                     onChange={handleTitleChange}
                     placeholder="제목을 적어보세요"
@@ -67,12 +67,8 @@ const DiaryWriter = () => {
                             <button
                                 key={emotionType}
                                 onClick={() => setEmotion(emotionType)}
-                                className={`border border-transparent p-1 rounded-lg
-                                    ${
-                                        emotion === emotionType
-                                            ? 'bg-green-200 text-green-600 hover:border-green-600'
-                                            : 'bg-gray-200  text-gray-500 hover:border-gray-600 hover:text-gray-600'
-                                    }
+                                className={`p-1
+                                    ${emotion === emotionType ? 'green-btn' : 'gray-btn'}
                                 `}
                             >
                                 {emotionType}
@@ -84,12 +80,8 @@ const DiaryWriter = () => {
                             <button
                                 key={weatherType}
                                 onClick={() => setWeather(weatherType)}
-                                className={`border border-transparent p-1 rounded-lg
-                                ${
-                                    weather === weatherType
-                                        ? 'bg-blue-200 text-blue-600 hover:border-blue-600'
-                                        : 'bg-gray-200  text-gray-500 hover:border-gray-600 hover:text-gray-600'
-                                }
+                                className={`p-1
+                                ${weather === weatherType ? 'blue-btn' : 'gray-btn'}
                             `}
                             >
                                 {weatherType}
@@ -98,16 +90,15 @@ const DiaryWriter = () => {
                     </div>
                 </div>
                 <textarea
-                    className="rounded-lg p-2 h-1/2 text-m
-                    focus:outline-none focus:ring-1 focus:ring-gray-200"
+                    className="h-1/2 text-m input-box"
                     value={content}
                     onChange={handleContentChange}
                     placeholder="오늘 당신의 하루는 어땠나요?"
                 />
                 <button
-                    className={`p-2 rounded-lg
-                    ${isValid ? 'bg-green-200 text-green-600' : 'bg-gray-200 text-gray-500'}`}
-                    onClick={handleSaveDiary}
+                    className={`p-2
+                    ${isValid ? 'green-btn' : 'gray-btn'}`}
+
                 >
                     {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
                 </button>
@@ -124,7 +115,7 @@ export default function DiaryHomePage() {
                 <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
                 {/* <div className="text-gray-400">일기를 적어보세요</div> */}
                 <DiaryCard />
-                <button className="bg-green-100 p-2 rounded-lg text-green-600">감정 모아 보기</button>
+                <button className="green-btn p-2">감정 모아 보기</button>
             </div>
         </div>
     )
