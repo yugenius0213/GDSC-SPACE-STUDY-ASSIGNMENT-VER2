@@ -22,7 +22,7 @@ export default function DiaryCard({ title, date, emotion, weather, id }: Diary) 
     }
     return (
         <Link
-            to={`/diary/${id}`}
+            to={`/detail/${id}`}
             className="flex flex-col gap-2 w-full p-3 border border-gray-200 rounded-lg items-start justify-center"
         >
             <h1 className="text-grey-600">{title}</h1>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Diary } from '../interface/diary'
 import DiaryCard from '../components/DiaryCard'
 import { useDiaryValue, useDiaryUpdate } from '../provider/Diary'
+import { Link } from 'react-router-dom'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -126,7 +127,9 @@ const DiaryViewer = () => {
                 <h1 className="flex items-center justify-start text-gray-400">일기를 적어보세요</h1>
             )}
 
-            <button className="green-btn p-2">감정 모아 보기</button>
+            <Link to={`/emotions`} className="green-btn p-2 flex justify-center items-center">
+                감정 모아 보기
+            </Link>
         </div>
     )
 }
