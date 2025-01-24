@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { EMOTION_LIST } from '../constants/emotions'
 import { emotionColorVariants } from '../../styles/emotionCard'
+import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants/diaryOutput'
 export default function EmotionLinkPage() {
     return (
         <div className="flex flex-col gap-10">
             <div className="flex flex-col items-star gap-3">
-                <h1 className="text-3xl font-semibold">감정 상자</h1>
-                <h2 className="text-primary-gray">나만의 감정을 돌아보고 생각에 잠겨보아요 :)</h2>
+                <h1 className="text-3xl font-semibold">{EMOTION_LIST_TITLE}</h1>
+                <h2 className="text-primary-gray">{EMOTION_LIST_DISCRIPTION}</h2>
             </div>
             <div className="grid grid-cols-2 gap-5">
                 {EMOTION_LIST.map((emotion, index) => (
