@@ -1,6 +1,7 @@
 import { useState, useEffect, MouseEvent } from 'react'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
+import { Button } from '../components/Button'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -79,24 +80,15 @@ const DiaryWriter = () => {
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="오늘 당신의 하루는 어땠나요?"
             ></textarea>
-            {isValid ? (
-                <button
-                    type="submit"
-                    className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600"
-                    onClick={(e) => handleSave(e)}
-                >
-                    일기를 저장해 보아요
-                </button>
-            ) : (
-                <button
-                    type="button"
-                    className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600"
-                >
-                    일기를 더 자세히 적어볼까요?
-                </button>
-            )}
+            <Button isValid={isValid} onClick={(e) => handleSave(e)}>
+                {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
+            </Button>
         </div>
     )
+}
+
+const DiaryCard = () => {
+    return <h1></h1>
 }
 
 const DiaryHistory = () => {
@@ -104,6 +96,7 @@ const DiaryHistory = () => {
         <div className="w-full flex flex-col items-start gap-4 p-4 justify-between rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl mt-5 text-emerald-600">기록된 일기</h1>
             <div className="flex items-center justify-center text-gray-400">일기를 적어보세요</div>
+            <DiaryCard />
             <Link
                 to="/emotions"
                 className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600"
