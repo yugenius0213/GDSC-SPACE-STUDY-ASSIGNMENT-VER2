@@ -11,7 +11,7 @@ export default function EmotionLinkPage() {
             </div>
             <div className="grid grid-cols-2 gap-5">
                 {EMOTION_LIST.map((emotion, index) => (
-                    <Link to={`/emotions/${emotion.emotion}`}>
+                    <Link to={`/emotions/${emotion.emotion}`} key={index}>
                         <div
                             key={index}
                             className="flex flex-row gap-4 border border-primary-lightgray hover:border-transparent p-3 rounded-2xl hover:shadow-2xl hover:scale-105 active:scale-100 transition-all ease-out duration-150 group"
