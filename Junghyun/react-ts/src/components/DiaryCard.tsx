@@ -1,7 +1,10 @@
 import { Diary } from '../interface/diary'
+import { Link } from 'react-router-dom'
 
 export default function DiaryCard({ title, date, emotion, weather, id }: Diary) {
-    const formattedDate = date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })
+    const formattedDate = new Date(date)
+        .toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', formatMatcher: 'basic' })
+        .replace(/\//g, '.')
 
     const emotionEmoji = {
         bad: '🤬',
@@ -18,7 +21,10 @@ export default function DiaryCard({ title, date, emotion, weather, id }: Diary) 
         snow: '❄️',
     }
     return (
-        <div className="flex flex-col gap-2 w-full p-3 border border-gray-200 rounded-lg items-start justify-center">
+        <Link
+            to={`/diary/${id}`}
+            className="flex flex-col gap-2 w-full p-3 border border-gray-200 rounded-lg items-start justify-center"
+        >
             <h1 className="text-grey-600">{title}</h1>
             <div className="flex flex-row justify-between w-full">
                 <span className="text-gray-400">{formattedDate}</span>
@@ -31,6 +37,6 @@ export default function DiaryCard({ title, date, emotion, weather, id }: Diary) 
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

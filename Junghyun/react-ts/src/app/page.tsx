@@ -111,15 +111,20 @@ const DiaryWriter = () => {
 
 const DiaryViewer = () => {
     const diaries = useDiaryValue()
+    const isDiaryExist = diaries.length > 0
 
     return (
         <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
             <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
-            <div className="flex flex-col gap-2 overflow-y-auto">
-                {diaries.map((diaries) => (
-                    <DiaryCard key={diaries.id} {...diaries} />
-                ))}
-            </div>
+            {isDiaryExist ? (
+                <div className="flex flex-col gap-2 overflow-y-auto">
+                    {diaries.map((diaries) => (
+                        <DiaryCard key={diaries.id} {...diaries} />
+                    ))}
+                </div>
+            ) : (
+                <h1 className="flex items-center justify-start text-gray-400">일기를 적어보세요</h1>
+            )}
 
             <button className="green-btn p-2">감정 모아 보기</button>
         </div>
