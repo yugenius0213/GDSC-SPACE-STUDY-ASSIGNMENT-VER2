@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { EMOTION_LIST } from '../constants/emotions'
 
 type EmotionColorVariants = {
@@ -20,20 +21,22 @@ export default function EmotionLinkPage() {
             </div>
             <div className="grid grid-cols-2 gap-5">
                 {EMOTION_LIST.map((emotion, index) => (
-                    <div
-                        key={index}
-                        className="flex flex-row gap-4 border border-primary-lightgray hover:border-transparent p-3 rounded-2xl hover:shadow-2xl hover:scale-105 active:scale-100 transition-all ease-out duration-150 group"
-                    >
+                    <Link to={`/emotions/${emotion.emotion}`}>
                         <div
-                            className={`flex items-center justify-center group-hover:shadow-inner w-24 h-24 min-w-[6rem] min-h-[6rem] rounded-2xl text-6xl ${emotionColorVariants[emotion.color]}`}
+                            key={index}
+                            className="flex flex-row gap-4 border border-primary-lightgray hover:border-transparent p-3 rounded-2xl hover:shadow-2xl hover:scale-105 active:scale-100 transition-all ease-out duration-150 group"
                         >
-                            {emotion.emoji}
+                            <div
+                                className={`flex items-center justify-center group-hover:shadow-inner ${emotionColorVariants[emotion.color]} w-24 h-24 min-w-[6rem] min-h-[6rem] rounded-2xl text-6xl`}
+                            >
+                                {emotion.emoji}
+                            </div>
+                            <div className="flex flex-col items-start justify-center pr-2">
+                                <h1 className="text-2xl font-medium">{emotion.name}</h1>
+                                <h2 className="text-primary-gray">{emotion.description}</h2>
+                            </div>
                         </div>
-                        <div className="flex flex-col items-start justify-center pr-2">
-                            <h1 className="text-2xl font-medium">{emotion.name}</h1>
-                            <h2 className="text-primary-gray">{emotion.description}</h2>
-                        </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
