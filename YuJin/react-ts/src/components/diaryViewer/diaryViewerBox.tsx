@@ -14,7 +14,7 @@ export const DiaryViewerBox = ({ diary }: { diary: Diary }) => {
                     <div className="text-sm text-primary-gray">{formattedDate}</div>
                     <div className="flex flex-row">
                         <div className="rounded-full border w-6 h-6 flex items-center justify-center">
-                            {EMOTION_DATA[diary.emotion].emojio}
+                            {EMOTION_DATA[diary.emotion].emoji}
                         </div>
                         <div className="rounded-full border w-6 h-6 flex items-center justify-center">
                             {WEATHER_EMOJI[diary.weather]}
