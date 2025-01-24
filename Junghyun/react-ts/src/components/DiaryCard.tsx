@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function DiaryCard({ title, date, emotion, weather, id }: Diary) {
     const formattedDate = new Date(date)
-        .toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', formatMatcher: 'basic' })
+        .toLocaleDateString('ko-KR', { year: 'numeric', month: 'numeric', day: 'numeric', formatMatcher: 'basic' })
         .replace(/\//g, '.')
 
     const emotionEmoji = {
