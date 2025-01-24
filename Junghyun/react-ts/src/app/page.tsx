@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Diary } from '../interface/diary'
 import DiaryCard from '../components/DiaryCard'
+import { useDiaryValue, useDiaryUpdate } from '../provider/Diary'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -8,6 +9,7 @@ const DiaryWriter = () => {
     const [emotion, setEmotion] = useState<Diary['emotion'] | undefined>()
     const [weather, setWeather] = useState<Diary['weather'] | undefined>()
     const [isValid, setIsValid] = useState<boolean>(false)
+    const updateDiaries = useDiaryUpdate()
 
     useEffect(() => {
         const isInvalid = title.length < 2 || content.length < 6 || !emotion || !weather
@@ -38,7 +40,7 @@ const DiaryWriter = () => {
             const savedDiaries: Diary[] = JSON.parse(localStorage.getItem('diaries') || '[]')
 
             localStorage.setItem('diaries', JSON.stringify([...savedDiaries, newDiary]))
-            console.log(newDiary)
+            updateDiaries((prev) => [...prev, newDiary])
 
             setTitle('')
             setContent('')
@@ -98,7 +100,7 @@ const DiaryWriter = () => {
                 <button
                     className={`p-2
                     ${isValid ? 'green-btn' : 'gray-btn'}`}
-
+                    onClick={handleSaveDiary}
                 >
                     {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
                 </button>
@@ -106,17 +108,29 @@ const DiaryWriter = () => {
         </>
     )
 }
+
+const DiaryViewer = () => {
+    const diaries = useDiaryValue()
+
+    return (
+        <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
+            <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
+            <div className="flex flex-col gap-2 overflow-y-auto">
+                {diaries.map((diaries) => (
+                    <DiaryCard key={diaries.id} {...diaries} />
+                ))}
+            </div>
+
+            <button className="green-btn p-2">감정 모아 보기</button>
+        </div>
+    )
+}
+
 export default function DiaryHomePage() {
     return (
         <div className="flex flex-col items-center justify-center h-full gap-10 md:grid md:grid-rows-1 md:grid-cols-[3fr,2fr] md:w-4/5 lg:w-2/3">
             <DiaryWriter />
-
-            <div className="flex flex-col gap-4 p-4 justify-between h-2/3 w-full border border-gray-200 rounded-lg">
-                <h1 className="text-xl text-green-600 mt-4">기록된 일기</h1>
-                {/* <div className="text-gray-400">일기를 적어보세요</div> */}
-                <DiaryCard />
-                <button className="green-btn p-2">감정 모아 보기</button>
-            </div>
+            <DiaryViewer />
         </div>
     )
 }
