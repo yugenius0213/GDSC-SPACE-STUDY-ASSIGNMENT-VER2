@@ -36,7 +36,7 @@ const DiaryWriter = () => {
     return (
         <div className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 w-full h-2/3 min-h-[20rem]">
             <input
-                className="p-2 mt-4 rounded-md transition ring-gray-100 focus:outline-none focus:ring-1 placeholder:text-gray-400 text-2xl"
+                className="diary-input text-2xl"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="제목을 적어보세요"
@@ -47,11 +47,11 @@ const DiaryWriter = () => {
                         <button
                             key={index}
                             type="button"
-                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 ${
+                            className={
                                 emotion === e
-                                    ? 'bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600'
-                                    : 'bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
-                            } cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm`}
+                                    ? 'btn-base btn-emotion'
+                                    : 'btn-base btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
+                            }
                             onClick={() => setEmotion(e)}
                         >
                             {e}
@@ -63,11 +63,11 @@ const DiaryWriter = () => {
                         <button
                             key={index}
                             type="button"
-                            className={`flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 ${
+                            className={
                                 weather === w
-                                    ? 'bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600'
-                                    : 'bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600'
-                            } cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm`}
+                                    ? 'btn-base btn-weather'
+                                    : 'btn-base btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
+                            }
                             onClick={() => setWeather(w)}
                         >
                             {w}
@@ -76,7 +76,7 @@ const DiaryWriter = () => {
                 </div>
             </div>
             <textarea
-                className="p-2 mt-4 rounded-md transition ring-gray-100 focus:outline-none focus:ring-1 placeholder:text-gray-400 h-full resize-none"
+                className="diary-input h-full resize-none"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="오늘 당신의 하루는 어땠나요?"
@@ -94,10 +94,7 @@ const DiaryHistory = () => {
             <h1 className="text-xl mt-5 text-emerald-600">기록된 일기</h1>
             <div className="flex items-center justify-center text-gray-400">일기를 적어보세요</div>
             <DiaryCard />
-            <Link
-                to="/emotions"
-                className="flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] w-full p-2 cursor-pointer transition-colors ease-in bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600"
-            >
+            <Link to="/emotions" className="btn-base btn-valid w-full">
                 감정 모아보기
             </Link>
         </div>
