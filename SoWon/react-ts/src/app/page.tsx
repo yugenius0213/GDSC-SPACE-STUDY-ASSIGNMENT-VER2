@@ -2,6 +2,7 @@ import { useState, useEffect, MouseEvent } from 'react'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
+import DiaryCard from '../components/diary/DiaryCard'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -85,10 +86,6 @@ const DiaryWriter = () => {
             </Button>
         </div>
     )
-}
-
-const DiaryCard = () => {
-    return <h1></h1>
 }
 
 const DiaryHistory = () => {
