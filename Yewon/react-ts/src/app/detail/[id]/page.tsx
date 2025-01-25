@@ -44,6 +44,9 @@ export default function DiaryDetailPage() {
                 <Link to="/" className="w-full">
                     <button className="green-btn w-full p-2">새로운 일기 작성하기</button>
                 </Link>
+                <Link to="/" className="w-full">
+                    <button className="red-btn w-full p-2">현재 일기 삭제하기</button>
+                </Link>
             </div>
         </div>
     )
