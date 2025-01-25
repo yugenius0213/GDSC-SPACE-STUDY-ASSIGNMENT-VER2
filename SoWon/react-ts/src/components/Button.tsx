@@ -2,7 +2,7 @@ import React, { MouseEvent, ReactNode } from 'react'
 
 interface ButtonProps {
     isValid: boolean
-    onClick: (e: MouseEvent<HTMLButtonElement>) => void
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void
     children: ReactNode
 }
 

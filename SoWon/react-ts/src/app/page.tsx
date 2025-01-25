@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
@@ -28,13 +28,18 @@ const DiaryWriter = () => {
     }, [title, content, weather, emotion])
 
     // 일기 제출 핸들러
-    const handleSave = (e: MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(title, content, weather, emotion)
+        if (isValid) {
+            console.log(title, content, weather, emotion)
+        }
     }
 
     return (
-        <div className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 w-full h-2/3 min-h-[20rem]">
+        <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 w-full h-2/3 min-h-[20rem]"
+        >
             <input
                 className="diary-input text-2xl"
                 value={title}
@@ -81,10 +86,8 @@ const DiaryWriter = () => {
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="오늘 당신의 하루는 어땠나요?"
             ></textarea>
-            <Button isValid={isValid} onClick={(e) => handleSave(e)}>
-                {isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}
-            </Button>
-        </div>
+            <Button isValid={isValid}>{isValid ? '일기를 저장해 보아요' : '일기를 더 자세히 적어볼까요?'}</Button>
+        </form>
     )
 }
 
