@@ -10,12 +10,9 @@ export default function EmotionLinkPage() {
                 <h2 className="text-primary-gray">{EMOTION_LIST_DISCRIPTION}</h2>
             </div>
             <div className="grid grid-cols-2 gap-5">
-                {EMOTION_LIST.map((emotion, index) => (
-                    <Link to={`/emotions/${emotion.emotion}`} key={index}>
-                        <div
-                            key={index}
-                            className="flex flex-row gap-4 border border-primary-lightgray hover:border-transparent p-3 rounded-2xl hover:shadow-2xl hover:scale-105 active:scale-100 transition-all ease-out duration-150 group"
-                        >
+                {EMOTION_LIST.map((emotion) => (
+                    <Link to={`/emotions/${emotion.emotion}`} key={emotion.name}>
+                        <div className="flex flex-row gap-4 border border-primary-lightgray hover:border-transparent p-3 rounded-2xl hover:shadow-2xl hover:scale-105 active:scale-100 transition-all ease-out duration-150 group">
                             <div
                                 className={`flex items-center justify-center group-hover:shadow-inner ${emotionColorVariants[emotion.color]} w-24 h-24 min-w-[6rem] min-h-[6rem] rounded-2xl text-6xl`}
                             >
