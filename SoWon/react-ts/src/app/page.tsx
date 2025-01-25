@@ -115,7 +115,6 @@ const DiaryHistory = () => {
     return (
         <div className="w-full flex flex-col items-start gap-4 p-4 justify-between rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl mt-5 text-emerald-600">기록된 일기</h1>
-            <div className="flex items-center justify-center text-gray-400">일기를 적어보세요</div>
             <DiaryCardList diary={useDiaryValue()} />
             <Link to="/emotions" className="btn-base btn-valid w-full">
                 감정 모아보기
