@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Diary } from '../../../interface/diary'
 import { DIARYKEY } from '../../../app/page'
 import { useEffect, useState } from 'react'
+import { formatDate } from '../../../util/dateUtil'
 
 type DiaryDetailPageParams = {
     id: string
@@ -11,15 +12,6 @@ export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
     const storedData: Diary[] = JSON.parse(localStorage.getItem(DIARYKEY)!) || []
     const [diary, setDiary] = useState<Diary | undefined>()
-
-    const formatDate = (date: Date): string => {
-        const strDate = date.toString()
-
-        const year = strDate.substring(0, 4)
-        const month = strDate.substring(5, 7)
-        const day = strDate.substring(8, 10)
-        return `${year}년 ${month}월 ${day}일`
-    } //DiaryCard의 formatData와 합치기
 
     const deleteDiary = () => {
         localStorage.setItem(DIARYKEY, JSON.stringify(storedData.filter((user) => user.id !== id)))
