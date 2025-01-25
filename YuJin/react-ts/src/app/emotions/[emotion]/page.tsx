@@ -6,6 +6,7 @@ import { useDiaryValue } from '../../../provider/Diary'
 import { useState } from 'react'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
 import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
+import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/diaryOutput'
 
 type EmotionPageParams = {
     emotion: Diary['emotion']
@@ -55,11 +56,11 @@ export default function EmotionPage() {
                     >
                         {diariesToRemove.length > 0
                             ? `선택된 ${diariesToRemove.length}개의 일기를 삭제합니다`
-                            : '선택된 일기가 없습니다'}
+                            : `${DIARY_NOT_SELECTED}`}
                     </button>
                 </>
             ) : (
-                <h1 className="text-primary-gray">아직 적지 않았어요</h1>
+                <h1 className="text-primary-gray">{NO_DIARY_IN_EMOTIONLIST}</h1>
             )}
         </div>
     )
