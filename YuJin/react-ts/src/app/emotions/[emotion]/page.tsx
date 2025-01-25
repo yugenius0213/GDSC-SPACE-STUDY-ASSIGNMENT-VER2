@@ -15,12 +15,12 @@ export default function EmotionPage() {
     const savedDiaries = useDiaryValue()
     const filteredDiaries = savedDiaries.filter((diary) => diary.emotion === emotion)
     const [diariesToRemove, setDiariesToRemove] = useState<Diary[]>([])
-    const handleCheckbox = (diaryId: string) => {
+    const handleCheckbox = ({ id }: { id: Diary['id'] }) => {
         setDiariesToRemove((prev) => {
-            if (prev.some((diary) => diary.id === diaryId)) {
-                return prev.filter((diary) => diary.id !== diaryId)
+            if (prev.some((diary) => diary.id === id)) {
+                return prev.filter((diary) => diary.id !== id)
             } else {
-                const diary = savedDiaries.find((diary) => diary.id === diaryId)
+                const diary = savedDiaries.find((diary) => diary.id === id)
                 return diary ? [...prev, diary] : prev
             }
         })
@@ -55,7 +55,7 @@ export default function EmotionPage() {
                                 <input
                                     type="checkbox"
                                     className="w-4 h-4 border border-primary-gray rounded-sm accent-primary-lightgray"
-                                    onChange={() => handleCheckbox(diary.id)}
+                                    onChange={() => handleCheckbox({ id: diary.id })}
                                     onClick={(e) => e.stopPropagation()}
                                 ></input>
                                 <div>{diary.title}</div>
