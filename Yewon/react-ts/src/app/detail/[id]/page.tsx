@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Diary } from '../../../interface/diary'
 import { DIARYKEY } from '../../../app/page'
 import { useEffect, useState } from 'react'
@@ -39,6 +39,12 @@ export default function DiaryDetailPage() {
             </div>
 
             <div className="text-base text-gray-800 h-2/3">{diary?.content}</div>
+
+            <div className="w-full flex flex-row gap-2">
+                <Link to="/" className="w-full">
+                    <button className="green-btn w-full p-2">새로운 일기 작성하기</button>
+                </Link>
+            </div>
         </div>
     )
 }
