@@ -3,17 +3,21 @@ import { useDiaryValue } from '../../../provider/Diary'
 import { dateFormatting } from '../../utils/dateFormat'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
 import { DELETE_CURRENT_DIARY, GO_YO_WRITE_DIARY } from '../../constants/diaryOutput'
+import { useEffect } from 'react'
 
 export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
     const diary = useDiaryValue().find((diary) => diary.id === id)
     const formattedDate = dateFormatting(diary!.date, 'full')
-    const removedDiary = updateDiaryStorage().removeDiary
+    const { removeDiary, updateDiary } = updateDiaryStorage()
     const navigate = useNavigate()
-    const removeDiary = () => {
-        removedDiary({ id: id! })
+    const handleDiaryRemove = () => {
+        removeDiary({ id: id! })
         navigate('/')
     }
+    useEffect(() => {
+        updateDiary(id!, { ...diary!, views: diary!.views + 1 })
+    }, [])
     return (
         <div className="h-full w-2/4 py-20">
             <div className="flex flex-col gap-4  my-9">
@@ -41,7 +45,7 @@ export default function DiaryDetailPage() {
                 </Link>
                 <button
                     className="flex w-full  px-1.5 py-2 items-center justify-center btn red-btn"
-                    onClick={removeDiary}
+                    onClick={handleDiaryRemove}
                 >
                     {DELETE_CURRENT_DIARY}
                 </button>
