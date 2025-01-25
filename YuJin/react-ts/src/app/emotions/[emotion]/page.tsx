@@ -5,6 +5,7 @@ import { Diary } from '../../../interface/diary'
 import { useDiaryValue } from '../../../provider/Diary'
 import { useState } from 'react'
 import { dateFormatting } from '../../utils/dateFormat'
+import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
 
 type EmotionPageParams = {
     emotion: Diary['emotion']
@@ -23,6 +24,13 @@ export default function EmotionPage() {
                 return diary ? [...prev, diary] : prev
             }
         })
+    }
+    const removedDiary = updateDiaryStorage().removeDiary
+    const handleRemoveDiaries = () => {
+        diariesToRemove.forEach((diary) => {
+            removedDiary({ id: diary.id })
+        })
+        setDiariesToRemove([])
     }
     return (
         <div className="flex flex-col justify-center items-start w-full md:w-2/3 gap-10">
@@ -61,6 +69,7 @@ export default function EmotionPage() {
 
                     <button
                         className={`w-full btn ${diariesToRemove.length > 0 ? 'red-btn red-btn:hover' : 'gray-btn gray-btn:hover'}  p-2`}
+                        onClick={diariesToRemove.length > 0 ? () => handleRemoveDiaries() : undefined}
                     >
                         {diariesToRemove.length > 0
                             ? `선택된 ${diariesToRemove.length}개의 일기를 삭제합니다`
