@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 
-const DiaryCard = () => {
+const Card = () => {
     const id = 1
     return <Link to={`/detail/:${id}`}>temp</Link>
 }
 
-export default DiaryCard
+export default Card

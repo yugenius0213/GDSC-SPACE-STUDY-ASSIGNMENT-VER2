@@ -2,7 +2,8 @@ import { useState, useEffect, FormEvent } from 'react'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
-import DiaryCard from '../components/diary/DiaryCard'
+import { useDiaryUpdate, useDiaryValue } from '../provider/Diary'
+import DiaryCardList from '../components/diary/DiaryCardList'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -14,6 +15,7 @@ const DiaryWriter = () => {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
     const weathers: Diary['weather'][] = ['cloud', 'rain', 'snow', 'sunny']
 
+    const updateDiaries = useDiaryUpdate()
     const minTitleLength: number = 3
     const minContentLength: number = 6
 
@@ -27,11 +29,29 @@ const DiaryWriter = () => {
         setIsValid(!hasInvalidFields)
     }, [title, content, weather, emotion])
 
+    const resetDiaryValue = () => {
+        setTitle('')
+        setContent('')
+        setWeather(undefined)
+        setEmotion(undefined)
+    }
+
     // 일기 제출 핸들러
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (isValid) {
-            console.log(title, content, weather, emotion)
+            const newDiary: Diary = {
+                id: window.crypto.randomUUID(),
+                date: new Date(),
+                title: title,
+                content: content,
+                emotion: emotion!,
+                weather: weather!,
+                views: 0,
+            }
+
+            updateDiaries((prev) => [...prev, newDiary])
+            resetDiaryValue()
         }
     }
 
@@ -96,7 +116,7 @@ const DiaryHistory = () => {
         <div className="w-full flex flex-col items-start gap-4 p-4 justify-between rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl mt-5 text-emerald-600">기록된 일기</h1>
             <div className="flex items-center justify-center text-gray-400">일기를 적어보세요</div>
-            <DiaryCard />
+            <DiaryCardList diary={useDiaryValue()} />
             <Link to="/emotions" className="btn-base btn-valid w-full">
                 감정 모아보기
             </Link>
