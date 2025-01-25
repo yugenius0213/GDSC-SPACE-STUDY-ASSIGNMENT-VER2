@@ -3,7 +3,7 @@ export type Diary = {
     date: Date
     title: string
     content: string
-    emotion: 'bad' | 'soso' | 'good' | 'great' | 'awesome'
-    weather: 'sunny' | 'cloud' | 'rain' | 'snow'
+    emotion: string
+    weather: string
     views: number
 }
