@@ -21,6 +21,10 @@ export default function DiaryDetailPage() {
         return `${year}년 ${month}월 ${day}일`
     } //DiaryCard의 formatData와 합치기
 
+    const deleteDiary = () => {
+        localStorage.setItem(DIARYKEY, JSON.stringify(storedData.filter((user) => user.id !== id)))
+    }
+
     useEffect(() => {
         setDiary(storedData.find((item) => item.id === id))
     }, [])
@@ -45,7 +49,9 @@ export default function DiaryDetailPage() {
                     <button className="green-btn w-full p-2">새로운 일기 작성하기</button>
                 </Link>
                 <Link to="/" className="w-full">
-                    <button className="red-btn w-full p-2">현재 일기 삭제하기</button>
+                    <button className="red-btn w-full p-2" onClick={() => deleteDiary()}>
+                        현재 일기 삭제하기
+                    </button>
                 </Link>
             </div>
         </div>
