@@ -22,7 +22,11 @@ const EmojiIcon = ({ emoji }: { emoji: string }) => {
     )
 }
 
-const formatDate = (date: Date) => {
+const formatDate = (date: Date | string) => {
+    if (typeof date === 'string') {
+        date = new Date(date)
+    }
+
     return new Intl.DateTimeFormat('ko-KR', {
         year: 'numeric',
         month: '2-digit',
