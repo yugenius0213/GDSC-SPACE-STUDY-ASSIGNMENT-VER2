@@ -2,8 +2,9 @@ import { useState, useEffect, FormEvent } from 'react'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button'
-import { useDiaryUpdate, useDiaryValue } from '../provider/Diary'
+import { useDiaryValue } from '../provider/Diary'
 import DiaryCardList from '../components/diary/DiaryCardList'
+import useDiaryManager from '../hooks/useDiaryManager'
 
 const DiaryWriter = () => {
     const [title, setTitle] = useState<string>('')
@@ -15,7 +16,7 @@ const DiaryWriter = () => {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
     const weathers: Diary['weather'][] = ['cloud', 'rain', 'snow', 'sunny']
 
-    const updateDiaries = useDiaryUpdate()
+    const { addDiary } = useDiaryManager()
     const minTitleLength: number = 3
     const minContentLength: number = 6
 
@@ -47,10 +48,10 @@ const DiaryWriter = () => {
                 content: content,
                 emotion: emotion!,
                 weather: weather!,
-                views: 0,
+                views: 1,
             }
 
-            updateDiaries((prev) => [...prev, newDiary])
+            addDiary(newDiary)
             resetDiaryValue()
         }
     }

@@ -1,12 +1,11 @@
 import { createContext, useContext, useState } from 'react'
 import { Diary } from '../interface/diary'
 import { localStorageUtil } from '../utils/LocalStorage'
+import { DIARY_STORAGE_KEY } from '../constants'
 
 const DiaryValueContext = createContext<Diary[] | undefined>(undefined)
 type DiaryUpdate = React.Dispatch<React.SetStateAction<Diary[]>>
 const DiaryUpdateContext = createContext<DiaryUpdate | undefined>(undefined)
-
-const DIARY_STORAGE_KEY = 'diary_data'
 
 const DiaryProvider = ({ children }: React.PropsWithChildren) => {
     const [diaries, updateDiaries] = useState(() => localStorageUtil.get<Diary[]>(DIARY_STORAGE_KEY) ?? [])
