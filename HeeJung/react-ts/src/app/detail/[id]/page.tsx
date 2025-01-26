@@ -16,6 +16,7 @@ export const dateFormat = (date: Date | string, dateStyle?: Intl.DateTimeFormatO
 
 export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
+    const diary: Diary | undefined = useDiaryValue().find((diary) => diary.id === id)
 
     const formattedDate = dateFormat(diary.date, 'full')
 
