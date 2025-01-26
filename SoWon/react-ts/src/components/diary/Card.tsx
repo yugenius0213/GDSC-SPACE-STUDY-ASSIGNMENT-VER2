@@ -37,7 +37,7 @@ const formatDate = (date: Date | string) => {
 const Card = ({ data }: { data: Diary }) => {
     return (
         <Link
-            to={`/detail/:${data.id}`}
+            to={`/detail/${data.id}`}
             className="flex flex-col items-start justify-center w-full gap-1.5 p-3 hover:bg-gray-50 transition cursor-pointer border border-gray-100 rounded-lg"
         >
             <h1 className="text-base text-gray-800">{data.title}</h1>
