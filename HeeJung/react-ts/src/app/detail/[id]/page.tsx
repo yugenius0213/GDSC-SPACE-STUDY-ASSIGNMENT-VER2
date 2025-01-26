@@ -1,4 +1,6 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useDiaryValue } from '../../../provider/Diary'
+import { Diary } from '../../../interface/diary'
 
 type DiaryDetailPageParams = {
     id: string
@@ -16,7 +18,21 @@ export const dateFormat = (date: Date | string, dateStyle?: Intl.DateTimeFormatO
 
 export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
+    const navigate = useNavigate()
     const diary: Diary | undefined = useDiaryValue().find((diary) => diary.id === id)
+    if (diary === undefined) throw Error(`Diary ${id} not found`)
+
+    const removeDiary = () => {
+        const storedDiaries = localStorage.getItem('diaries')
+        if (!storedDiaries) return
+
+        const diaries: Diary[] = JSON.parse(storedDiaries)
+        const updatedDiaries = diaries.filter((diary) => diary.id !== id)
+
+        localStorage.setItem('diaries', JSON.stringify(updatedDiaries))
+
+        navigate('/')
+    }
 
     const formattedDate = dateFormat(diary.date, 'full')
 
