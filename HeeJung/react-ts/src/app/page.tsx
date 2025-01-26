@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useDiaryUpdate } from '../provider/Diary'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
 
@@ -10,6 +11,8 @@ function DiaryWriter() {
     const weathers: Diary['weather'][] = ['cloud', 'rain', 'snow', 'sunny']
     const [contents, setContents] = useState<string>('')
     const [isValid, setIsValid] = useState(false)
+
+    const updateDiaries = useDiaryUpdate()
 
     useEffect(() => {
         const isNotValidCondition =
