@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .inputfield-text {
+    @apply w-full p-2 rounded-lg border border-transparent focus:outline-none focus:ring-1 focus:ring-gray-100;
+  }
+
+  .default-btn {
+    @apply p-1 rounded-lg text-sm border border-transparent bg-gray-100 text-gray-400 hover:text-gray-600 hover:border-gray-600
+  }
+
+  .green-btn {
+    @apply p-1 rounded-lg text-sm border border-transparent bg-emerald-100 text-emerald-600 hover:border-emerald-600
+  }
+
+  .blue-btn {
+    @apply p-1 rounded-lg text-sm border border-transparent bg-blue-100 text-blue-600 hover:border-blue-600
+  }
+}
