@@ -20,7 +20,32 @@ function DiaryWriter() {
         setIsValid(!isNotValidCondition)
     }, [title, emotion, weather, contents])
 
-    // localstorage에 저장하는 코드
+    const saveDiary = () => {
+        if (!emotion || !weather) {
+            return
+        }
+
+        const newDiary: Diary = {
+            id: crypto.randomUUID(),
+            date: new Date(),
+            title,
+            content: contents,
+            emotion: emotion,
+            weather: weather,
+            views: 0,
+        }
+
+        const existingDiaries = JSON.parse(localStorage.getItem('diaries') || '[]') as Diary[]
+        const updatedDiaries = [...existingDiaries, newDiary]
+
+        localStorage.setItem('diaries', JSON.stringify(updatedDiaries))
+        updateDiaries(updatedDiaries)
+
+        setTitle('')
+        setEmotion(undefined)
+        setWeather(undefined)
+        setContents('')
+    }
 
     return (
         <div className="flex flex-col gap-4 p-4 rounded-lg bg-white border border-gray-100 w-full h-2/3 min-h-[20rem]">
