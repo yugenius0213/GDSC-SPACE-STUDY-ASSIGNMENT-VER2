@@ -4,8 +4,20 @@ type DiaryDetailPageParams = {
     id: string
 }
 
+export const dateFormat = (date: Date | string, dateStyle?: Intl.DateTimeFormatOptions['dateStyle']) => {
+    const parsedDate = typeof date === 'string' ? new Date(date) : date
+
+    const formattedDate = Intl.DateTimeFormat('ko-KR', {
+        dateStyle,
+    }).format(parsedDate)
+
+    return formattedDate
+}
+
 export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
+
+    const formattedDate = dateFormat(diary.date, 'full')
 
     return (
         <div className="flex justify-center items-center w-full h-screen bg-white">
