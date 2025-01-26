@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 버튼 스타일을 재사용하기 위해 유틸리티 클래스를 생성 */
-@layer components {
-    .btn-base {
+@layer base {
+    .btn {
         @apply flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 cursor-pointer transition-colors ease-in;
     }
+}
 
+@layer components {
     .btn-valid {
         @apply bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600;
     }

@@ -75,8 +75,8 @@ const DiaryWriter = () => {
                             type="button"
                             className={
                                 emotion === e
-                                    ? 'btn-base btn-emotion'
-                                    : 'btn-base btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
+                                    ? 'btn btn-emotion'
+                                    : 'btn btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
                             }
                             onClick={() => setEmotion(e)}
                         >
@@ -91,8 +91,8 @@ const DiaryWriter = () => {
                             type="button"
                             className={
                                 weather === w
-                                    ? 'btn-base btn-weather'
-                                    : 'btn-base btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
+                                    ? 'btn btn-weather'
+                                    : 'btn btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
                             }
                             onClick={() => setWeather(w)}
                         >
@@ -117,7 +117,7 @@ const DiaryHistory = () => {
         <div className="w-full flex flex-col items-start gap-4 p-4 justify-between rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl mt-5 text-emerald-600">기록된 일기</h1>
             <DiaryCardList diary={useDiaryValue()} />
-            <Link to="/emotions" className="btn-base btn-valid w-full">
+            <Link to="/emotions" className="btn btn-valid w-full">
                 감정 모아보기
             </Link>
         </div>
