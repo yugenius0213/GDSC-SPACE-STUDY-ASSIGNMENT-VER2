@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDiaryUpdate } from '../provider/Diary'
+import { useDiaryUpdate, useDiaryValue } from '../provider/Diary'
 import { Diary } from '../interface/diary'
 import { Link } from 'react-router-dom'
 
@@ -98,6 +98,13 @@ function DiaryWriter() {
 }
 
 function DiaryRecord() {
+    const updateDiaries = useDiaryUpdate()
+
+    useEffect(() => {
+        const storedDiaries = JSON.parse(localStorage.getItem('diaries') || '[]') as Diary[]
+        updateDiaries(storedDiaries)
+    }, [updateDiaries])
+
     return (
         <div className="w-full flex flex-col items-start gap-4 p-4 justify-between rounded-lg bg-white border border-gray-100 h-2/3 min-h-[20rem]">
             <h1 className="text-xl mt-5 text-emerald-600">기록된 일기</h1>
