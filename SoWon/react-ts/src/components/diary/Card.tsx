@@ -1,20 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Diary } from '../../interface/diary'
-
-const emotionEmoji: Record<Diary['emotion'], string> = {
-    bad: '🤬',
-    soso: '😗',
-    good: '😙',
-    great: '😃',
-    awesome: '😎',
-}
-
-const weatherEmoji: Record<Diary['weather'], string> = {
-    cloud: '☁️',
-    rain: '🌧',
-    snow: '❄️',
-    sunny: '☀️',
-}
+import { emotionEmoji, weatherEmoji } from '../../constants'
 
 const EmojiIcon = ({ emoji }: { emoji: string }) => {
     return (
