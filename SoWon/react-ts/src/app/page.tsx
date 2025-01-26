@@ -73,11 +73,7 @@ const DiaryWriter = () => {
                         <button
                             key={index}
                             type="button"
-                            className={
-                                emotion === e
-                                    ? 'btn btn-emotion'
-                                    : 'btn btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
-                            }
+                            className={emotion === e ? 'btn btn-emotion' : 'btn btn-invalid px-1.5 py-0.5 text-sm'}
                             onClick={() => setEmotion(e)}
                         >
                             {e}
@@ -89,11 +85,7 @@ const DiaryWriter = () => {
                         <button
                             key={index}
                             type="button"
-                            className={
-                                weather === w
-                                    ? 'btn btn-weather'
-                                    : 'btn btn-invalid cursor-pointer transition-colors ease-in px-1.5 py-0.5 text-sm'
-                            }
+                            className={weather === w ? 'btn btn-weather' : 'btn btn-invalid px-1.5 py-0.5 text-sm'}
                             onClick={() => setWeather(w)}
                         >
                             {w}
