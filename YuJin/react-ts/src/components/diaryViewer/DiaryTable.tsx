@@ -1,7 +1,11 @@
 import { Link } from 'react-router'
 import { Diary } from '../../interface/diary'
 import { dateFormatting } from '../../app/utils/dateFormat'
+<<<<<<< HEAD
 import { ROUTE_TYPE } from '../../app/constants'
+=======
+import { ROUTE_TYPE } from '../../app/constants/routes'
+>>>>>>> 962156a (refactor: add route type constants)
 
 type DiaryTableProps = {
     diary: Diary

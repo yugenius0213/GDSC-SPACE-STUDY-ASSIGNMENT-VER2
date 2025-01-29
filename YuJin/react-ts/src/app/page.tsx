@@ -3,13 +3,19 @@ import { updateDiaryStorage } from '../hooks/useLocalStorage'
 import { Diary } from '../interface/diary'
 import { useDiaryValue } from '../provider/Diary'
 import { Link } from 'react-router-dom'
+<<<<<<< HEAD
 import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
 import { minContentLength, minTitleLength } from './constants'
+=======
+import { DiaryViewerBox } from '../components/diaryViewer/DiaryViewerBox'
+import { minContentLength, minTitleLength } from './constants/contraints'
+>>>>>>> 962156a (refactor: add route type constants)
 import {
     DIARY_CONTENT_PLACEHOLDER,
     DIARY_TITLE_PLACEHOLDER,
     INVALID_SAVE_BUTTON_TEXT,
     VALID_SAVE_BUTTON_TEXT,
+<<<<<<< HEAD
 } from './constants'
 import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants'
 import { ROUTE_TYPE } from './constants'
@@ -30,6 +36,12 @@ function DisabledSaveButton() {
         </button>
     )
 }
+=======
+} from './constants/diaryInputs'
+import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
+import { ROUTE_TYPE } from './constants/routes'
+
+>>>>>>> 962156a (refactor: add route type constants)
 function DiaryWriter() {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
     const weather: Diary['weather'][] = ['sunny', 'cloud', 'rain', 'snow']

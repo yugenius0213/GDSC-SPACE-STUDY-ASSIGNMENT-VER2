@@ -5,8 +5,13 @@ import { Diary } from '../../../interface/diary'
 import { useDiaryValue } from '../../../provider/Diary'
 import { useState } from 'react'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
+<<<<<<< HEAD
 import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
 import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants'
+=======
+import { DiaryTable } from '../../../components/diaryViewer/DiaryTable'
+import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/diaryOutput'
+>>>>>>> 962156a (refactor: add route type constants)
 
 type EmotionPageParams = {
     emotion: Diary['emotion']
