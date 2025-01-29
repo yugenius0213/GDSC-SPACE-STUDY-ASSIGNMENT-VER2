@@ -11,11 +11,27 @@ import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/dia
 type EmotionPageParams = {
     emotion: Diary['emotion']
 }
+function DisabledDeleteButton() {
+    return (
+        <button className={`w-full btn  gray-btn gray-btn:hover p-2`} disabled>
+            {DIARY_NOT_SELECTED}
+        </button>
+    )
+}
+function DeleteSelectedDiariesButton({ count, onClick }: { count: number; onClick: () => void }) {
+    return (
+        <button className={`w-full btn red-btn red-btn:hover p-2`} onClick={() => onClick()}>
+            {`선택된 ${count}개의 일기를 삭제합니다`}
+        </button>
+    )
+}
 export default function EmotionPage() {
     const { emotion } = useParams<EmotionPageParams>()
     const savedDiaries = useDiaryValue()
     const filteredDiaries = savedDiaries.filter((diary) => diary.emotion === emotion)
     const [diariesToRemove, setDiariesToRemove] = useState<Diary[]>([])
+    const isDiaryExsists = filteredDiaries.length > 0
+    const isDiarySelected = diariesToRemove.length > 0
     const handleCheckbox = ({ id }: { id: Diary['id'] }) => {
         setDiariesToRemove((prev) => {
             if (prev.some((diary) => diary.id === id)) {
@@ -44,20 +60,17 @@ export default function EmotionPage() {
                 <h1 className="text-3xl font-semibold">{EMOTION_DATA[emotion!].description}</h1>
             </div>
 
-            {filteredDiaries.length > 0 ? (
+            {isDiaryExsists ? (
                 <>
                     {filteredDiaries.map((diary) => (
                         <DiaryTable diary={diary} key={diary.id} handleCheckbox={handleCheckbox} />
                     ))}
 
-                    <button
-                        className={`w-full btn ${diariesToRemove.length > 0 ? 'red-btn red-btn:hover' : 'gray-btn gray-btn:hover'}  p-2`}
-                        onClick={diariesToRemove.length > 0 ? () => handleRemoveDiaries() : undefined}
-                    >
-                        {diariesToRemove.length > 0
-                            ? `선택된 ${diariesToRemove.length}개의 일기를 삭제합니다`
-                            : `${DIARY_NOT_SELECTED}`}
-                    </button>
+                    {isDiarySelected ? (
+                        <DeleteSelectedDiariesButton count={diariesToRemove.length} onClick={handleRemoveDiaries} />
+                    ) : (
+                        <DisabledDeleteButton />
+                    )}
                 </>
             ) : (
                 <h1 className="text-primary-gray">{NO_DIARY_IN_EMOTIONLIST}</h1>
