@@ -5,7 +5,7 @@ import { Diary } from '../../../interface/diary'
 import { useDiaryValue } from '../../../provider/Diary'
 import { useState } from 'react'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
-import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
+import { DiaryTable } from '../../../components/diaryViewer/DiaryTable'
 import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/diaryOutput'
 
 type EmotionPageParams = {
