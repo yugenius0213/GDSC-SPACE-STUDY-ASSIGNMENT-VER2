@@ -13,7 +13,20 @@ import {
 } from './constants/diaryInputs'
 import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
 import { ROUTE_TYPE } from './constants/routes'
-
+function SaveButton({ onClick }: { onClick: () => void }) {
+    return (
+        <button className={`w-full btn green-btn py-2 text-lg transition-colors ease-in`} onClick={onClick}>
+            {VALID_SAVE_BUTTON_TEXT}
+        </button>
+    )
+}
+function DisabledSaveButton() {
+    return (
+        <button className={`w-full btn gray-btn py-2 text-lg transition-colors ease-in`} disabled>
+            {INVALID_SAVE_BUTTON_TEXT}
+        </button>
+    )
+}
 function DiaryWriter() {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
     const weather: Diary['weather'][] = ['sunny', 'cloud', 'rain', 'snow']
@@ -94,12 +107,7 @@ function DiaryWriter() {
                 value={content}
             ></textarea>
 
-            <button
-                className={`w-full btn ${isValid ? 'green-btn' : 'gray-btn'} py-2 text-lg transition-colors ease-in`}
-                onClick={saveDiary}
-            >
-                {isValid ? VALID_SAVE_BUTTON_TEXT : INVALID_SAVE_BUTTON_TEXT}
-            </button>
+            {isValid ? <SaveButton onClick={saveDiary} /> : <DisabledSaveButton />}
         </div>
     )
 }
