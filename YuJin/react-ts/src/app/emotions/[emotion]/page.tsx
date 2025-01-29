@@ -16,10 +16,13 @@ import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/dia
 type EmotionPageParams = {
     emotion: Diary['emotion']
 }
+<<<<<<< HEAD
 type DeleteSelectedDiariesButtonProps = {
     count: number
     onClick: () => void
 }
+=======
+>>>>>>> a875817 (refactor: seperate conditional button)
 function DisabledDeleteButton() {
     return (
         <button className={`w-full btn  gray-btn gray-btn:hover p-2`} disabled>
@@ -27,7 +30,11 @@ function DisabledDeleteButton() {
         </button>
     )
 }
+<<<<<<< HEAD
 function DeleteSelectedDiariesButton({ count, onClick }: DeleteSelectedDiariesButtonProps) {
+=======
+function DeleteSelectedDiariesButton({ count, onClick }: { count: number; onClick: () => void }) {
+>>>>>>> a875817 (refactor: seperate conditional button)
     return (
         <button className={`w-full btn red-btn red-btn:hover p-2`} onClick={() => onClick()}>
             {`선택된 ${count}개의 일기를 삭제합니다`}
