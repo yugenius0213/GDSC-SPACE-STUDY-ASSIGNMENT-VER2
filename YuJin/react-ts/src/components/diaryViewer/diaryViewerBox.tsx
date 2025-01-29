@@ -3,11 +3,17 @@ import { EMOTION_DATA } from '../../app/constants'
 import { WEATHER_EMOJI } from '../../app/constants'
 import { Diary } from '../../interface/diary'
 import { dateFormatting } from '../../app/utils/dateFormat'
+<<<<<<< HEAD
 import { ROUTE_TYPE } from '../../app/constants'
 type DiaryViewerBoxProps = {
     diary: Diary
 }
 export const DiaryViewerBox = ({ diary }: DiaryViewerBoxProps) => {
+=======
+import { ROUTE_TYPE } from '../../app/constants/routes'
+
+export const DiaryViewerBox = ({ diary }: { diary: Diary }) => {
+>>>>>>> 962156a (refactor: add route type constants)
     const formattedDate = dateFormatting(diary.date)
     return (
         <Link to={`${ROUTE_TYPE.DIARY}/${diary.id}`}>
