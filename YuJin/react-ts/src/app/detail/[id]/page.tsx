@@ -14,7 +14,7 @@ export default function DiaryDetailPage() {
     const navigate = useNavigate()
     const handleDiaryRemove = () => {
         removeDiary({ id: id! })
-        navigate('/')
+        navigate(ROUTE_TYPE.HOME)
     }
     useEffect(() => {
         updateDiary(id!, { ...diary!, views: diary!.views + 1 })
