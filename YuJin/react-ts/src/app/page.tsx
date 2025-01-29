@@ -3,7 +3,7 @@ import { updateDiaryStorage } from '../hooks/useLocalStorage'
 import { Diary } from '../interface/diary'
 import { useDiaryValue } from '../provider/Diary'
 import { Link } from 'react-router-dom'
-import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
+import { DiaryViewerBox } from '../components/diaryViewer/DiaryViewerBox'
 import { minContentLength, minTitleLength } from './constants/contraints'
 import {
     DIARY_CONTENT_PLACEHOLDER,
@@ -12,6 +12,7 @@ import {
     VALID_SAVE_BUTTON_TEXT,
 } from './constants/diaryInputs'
 import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
+import { ROUTE_TYPE } from './constants/routes'
 
 function DiaryWriter() {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
@@ -119,7 +120,7 @@ function DiaryViewer() {
                 <div className="text-primary-gray">{EMPTY_DIARY}</div>
             )}
 
-            <Link to="/emotions">
+            <Link to={ROUTE_TYPE.EMOTIONS}>
                 <button className="w-full btn py-2 text-lg green-btn ">{VIEW_EMOTIONS_BUTTON_TEXT}</button>
             </Link>
         </div>
