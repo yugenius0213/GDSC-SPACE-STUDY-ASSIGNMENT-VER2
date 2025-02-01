@@ -6,6 +6,7 @@ import { useDiaryValue } from '../../../provider/Diary'
 import { useState } from 'react'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
 import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants'
 =======
@@ -16,17 +17,27 @@ import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/dia
 =======
 import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/diaryOutputs'
 >>>>>>> bcbcf69 (refactor: add index file)
+=======
+import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
+import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants'
+>>>>>>> 0849dca (refactor: add type for readability)
 
 type EmotionPageParams = {
     emotion: Diary['emotion']
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0849dca (refactor: add type for readability)
 type DeleteSelectedDiariesButtonProps = {
     count: number
     onClick: () => void
 }
+<<<<<<< HEAD
 =======
 >>>>>>> a875817 (refactor: seperate conditional button)
+=======
+>>>>>>> 0849dca (refactor: add type for readability)
 function DisabledDeleteButton() {
     return (
         <button className={`w-full btn  gray-btn gray-btn:hover p-2`} disabled>
@@ -35,10 +46,14 @@ function DisabledDeleteButton() {
     )
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 function DeleteSelectedDiariesButton({ count, onClick }: DeleteSelectedDiariesButtonProps) {
 =======
 function DeleteSelectedDiariesButton({ count, onClick }: { count: number; onClick: () => void }) {
 >>>>>>> a875817 (refactor: seperate conditional button)
+=======
+function DeleteSelectedDiariesButton({ count, onClick }: DeleteSelectedDiariesButtonProps) {
+>>>>>>> 0849dca (refactor: add type for readability)
     return (
         <button className={`w-full btn red-btn red-btn:hover p-2`} onClick={() => onClick()}>
             {`선택된 ${count}개의 일기를 삭제합니다`}
