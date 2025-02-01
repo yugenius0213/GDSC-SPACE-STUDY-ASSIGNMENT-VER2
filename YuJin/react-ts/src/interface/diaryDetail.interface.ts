@@ -1,3 +1,0 @@
-type DiaryDetailPageParams = {
-    id: string
-}

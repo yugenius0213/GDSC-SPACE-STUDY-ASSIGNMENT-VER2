@@ -2,10 +2,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDiaryValue } from '../../../provider/Diary'
 import { dateFormatting } from '../../utils/dateFormat'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
-import { DELETE_CURRENT_DIARY, GO_YO_WRITE_DIARY } from '../../constants/diaryOutput'
+import { DELETE_CURRENT_DIARY, GO_YO_WRITE_DIARY } from '../../constants'
 import { useEffect } from 'react'
-import { ROUTE_TYPE } from '../../constants/routes'
-
+import { ROUTE_TYPE } from '../../constants'
+type DiaryDetailPageParams = {
+    id: string
+}
 export default function DiaryDetailPage() {
     const { id } = useParams<DiaryDetailPageParams>()
     const diary = useDiaryValue().find((diary) => diary.id === id)
