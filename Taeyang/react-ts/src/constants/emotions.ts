@@ -5,37 +5,37 @@ export type EmotionTextType = {
 }
 
 export const emotions = [
-    { label: 'bad', icon: '🤬' },
-    { label: 'soso', icon: '😗' },
-    { label: 'good', icon: '😙' },
-    { label: 'great', icon: '😃' },
-    { label: 'awesome', icon: '😎' },
-  ];
+  { label: 'awesome', icon: '😎' },
+  { label: 'great', icon: '😃' },
+  { label: 'good', icon: '😙' },
+  { label: 'soso', icon: '😗' },
+  { label: 'bad', icon: '🤬' },
+];
 
 export const emotionTexts: Record<string, EmotionTextType> = {
-  bad: {
-    title: 'Bad',
-    desc: '최악의 하루였어요!',
-    color: 'red',
-  },
-  soso: {
-    title: 'Soso',
-    desc: '괜찮은 하루였어요',
+  awesome: {
+    title: 'Awesome',
+    desc: '최고의 하루였어요',
     color: 'yellow',
-  },
-  good: {
-    title: 'Good',
-    desc: '좋은 하루였어요',
-    color: 'green',
   },
   great: {
     title: 'Great',
     desc: '멋진 하루였어요',
     color: 'blue',
   },
-  awesome: {
-    title: 'Awesome',
-    desc: '최고의 하루였어요',
+  good: {
+    title: 'Good',
+    desc: '좋은 하루였어요',
+    color: 'green',
+  },
+  soso: {
+    title: 'Soso',
+    desc: '괜찮은 하루였어요',
     color: 'purple',
+  },
+  bad: {
+    title: 'Bad',
+    desc: '최악의 하루였어요!',
+    color: 'red',
   },
 };
