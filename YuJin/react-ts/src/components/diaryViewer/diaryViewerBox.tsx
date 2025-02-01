@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
-import { EMOTION_DATA } from '../../app/constants/emotions'
-import { WEATHER_EMOJI } from '../../app/constants/weather'
+import { EMOTION_DATA } from '../../app/constants'
+import { WEATHER_EMOJI } from '../../app/constants'
 import { Diary } from '../../interface/diary'
 import { dateFormatting } from '../../app/utils/dateFormat'
-import { ROUTE_TYPE } from '../../app/constants/routes'
-
-export const DiaryViewerBox = ({ diary }: { diary: Diary }) => {
+import { ROUTE_TYPE } from '../../app/constants'
+type DiaryViewerBoxProps = {
+    diary: Diary
+}
+export const DiaryViewerBox = ({ diary }: DiaryViewerBoxProps) => {
     const formattedDate = dateFormatting(diary.date)
     return (
         <Link to={`${ROUTE_TYPE.DIARY}/${diary.id}`}>

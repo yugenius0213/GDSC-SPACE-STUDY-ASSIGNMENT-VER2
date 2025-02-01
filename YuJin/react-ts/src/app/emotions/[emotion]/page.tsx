@@ -1,15 +1,19 @@
 import { useParams } from 'react-router-dom'
 import { emotionColorVariants } from '../../../styles/emotionCard'
-import { EMOTION_DATA } from '../../constants/emotions'
+import { EMOTION_DATA } from '../../constants'
 import { Diary } from '../../../interface/diary'
 import { useDiaryValue } from '../../../provider/Diary'
 import { useState } from 'react'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
-import { DiaryTable } from '../../../components/diaryViewer/DiaryTable'
-import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/diaryOutputs'
+import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
+import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants'
 
 type EmotionPageParams = {
     emotion: Diary['emotion']
+}
+type DeleteSelectedDiariesButtonProps = {
+    count: number
+    onClick: () => void
 }
 function DisabledDeleteButton() {
     return (
@@ -18,7 +22,7 @@ function DisabledDeleteButton() {
         </button>
     )
 }
-function DeleteSelectedDiariesButton({ count, onClick }: { count: number; onClick: () => void }) {
+function DeleteSelectedDiariesButton({ count, onClick }: DeleteSelectedDiariesButtonProps) {
     return (
         <button className={`w-full btn red-btn red-btn:hover p-2`} onClick={() => onClick()}>
             {`선택된 ${count}개의 일기를 삭제합니다`}

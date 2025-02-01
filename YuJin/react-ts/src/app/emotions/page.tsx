@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import { EMOTION_LIST } from '../constants/emotions'
+import { EMOTION_LIST } from '../constants'
 import { emotionColorVariants } from '../../styles/emotionCard'
-import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants/diaryOutputs'
+import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants'
 import { ROUTE_TYPE } from '../constants/routes'
 export default function EmotionLinkPage() {
     return (
