@@ -10,8 +10,12 @@ import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
 import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants'
 =======
 import { DiaryTable } from '../../../components/diaryViewer/DiaryTable'
+<<<<<<< HEAD
 import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/diaryOutput'
 >>>>>>> 962156a (refactor: add route type constants)
+=======
+import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants/diaryOutputs'
+>>>>>>> bcbcf69 (refactor: add index file)
 
 type EmotionPageParams = {
     emotion: Diary['emotion']

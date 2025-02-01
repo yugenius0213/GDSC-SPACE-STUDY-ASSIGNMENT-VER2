@@ -2,10 +2,14 @@ import { Link } from 'react-router-dom'
 import { EMOTION_LIST } from '../constants'
 import { emotionColorVariants } from '../../styles/emotionCard'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants'
 =======
 import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants/diaryOutput'
 >>>>>>> 962156a (refactor: add route type constants)
+=======
+import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants/diaryOutputs'
+>>>>>>> bcbcf69 (refactor: add index file)
 import { ROUTE_TYPE } from '../constants/routes'
 export default function EmotionLinkPage() {
     return (
