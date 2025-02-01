@@ -1,0 +1,3 @@
+type DiaryDetailPageParams = {
+    id: string
+}
