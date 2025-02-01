@@ -4,16 +4,19 @@ import { Diary } from '../interface/diary'
 import { useDiaryValue } from '../provider/Diary'
 import { Link } from 'react-router-dom'
 import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
-import { minContentLength, minTitleLength } from './constants/contraints'
+import { minContentLength, minTitleLength } from './constants'
 import {
     DIARY_CONTENT_PLACEHOLDER,
     DIARY_TITLE_PLACEHOLDER,
     INVALID_SAVE_BUTTON_TEXT,
     VALID_SAVE_BUTTON_TEXT,
-} from './constants/diaryInputs'
-import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutputs'
-import { ROUTE_TYPE } from './constants/routes'
-function SaveButton({ onClick }: { onClick: () => void }) {
+} from './constants'
+import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants'
+import { ROUTE_TYPE } from './constants'
+type SavebuttonProps = {
+    onClick: () => void
+}
+function SaveButton({ onClick }: SavebuttonProps) {
     return (
         <button className={`w-full btn green-btn py-2 text-lg transition-colors ease-in`} onClick={onClick}>
             {VALID_SAVE_BUTTON_TEXT}
