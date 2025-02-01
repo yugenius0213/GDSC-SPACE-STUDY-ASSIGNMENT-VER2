@@ -3,7 +3,7 @@ import { updateDiaryStorage } from '../hooks/useLocalStorage'
 import { Diary } from '../interface/diary'
 import { useDiaryValue } from '../provider/Diary'
 import { Link } from 'react-router-dom'
-import { DiaryViewerBox } from '../components/diaryViewer/DiaryViewerBox'
+import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
 import { minContentLength, minTitleLength } from './constants/contraints'
 import {
     DIARY_CONTENT_PLACEHOLDER,
@@ -11,7 +11,7 @@ import {
     INVALID_SAVE_BUTTON_TEXT,
     VALID_SAVE_BUTTON_TEXT,
 } from './constants/diaryInputs'
-import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
+import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutputs'
 import { ROUTE_TYPE } from './constants/routes'
 function SaveButton({ onClick }: { onClick: () => void }) {
     return (
