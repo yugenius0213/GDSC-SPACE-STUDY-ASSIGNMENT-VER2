@@ -3,6 +3,7 @@ import { EMOTION_LIST } from '../constants'
 import { emotionColorVariants } from '../../styles/emotionCard'
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants'
 =======
 import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants/diaryOutput'
@@ -10,6 +11,9 @@ import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants/diary
 =======
 import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants/diaryOutputs'
 >>>>>>> bcbcf69 (refactor: add index file)
+=======
+import { EMOTION_LIST_DISCRIPTION, EMOTION_LIST_TITLE } from '../constants'
+>>>>>>> 0849dca (refactor: add type for readability)
 import { ROUTE_TYPE } from '../constants/routes'
 export default function EmotionLinkPage() {
     return (
