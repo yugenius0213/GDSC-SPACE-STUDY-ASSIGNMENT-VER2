@@ -14,5 +14,14 @@ export function updateDiaryStorage() {
             return updatedDiary
         })
     }
-    return addDiary
+
+    const removeDiary = (removeDiary: Pick<Diary, 'id'>) => {
+        updateDiaries((prev) => {
+            const removedDiary = prev.filter(({ id }) => id !== removeDiary.id)
+            useLocalStorage(removedDiary)
+            return removedDiary
+        })
+    }
+
+    return { addDiary, removeDiary }
 }

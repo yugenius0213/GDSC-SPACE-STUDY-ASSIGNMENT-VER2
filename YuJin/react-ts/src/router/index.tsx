@@ -5,23 +5,31 @@ import DiaryEmotionLinkPage from '../app/emotions/page'
 import DiaryEmotionPage from '../app/emotions/[emotion]/page'
 
 export type DiaryRouterPath = '/' | `/detail/${string}` | '/emotions' | `/emotions/${string}`
-const diaryRouter = createBrowserRouter([
+const diaryRouter = createBrowserRouter(
+    [
+        {
+            path: '/',
+            element: <DiaryHomePage />,
+        },
+        {
+            path: '/detail/:id',
+            element: <DiaryDetailPage />,
+        },
+        {
+            path: '/emotions',
+            element: <DiaryEmotionLinkPage />,
+        },
+        {
+            path: '/emotions/:emotion',
+            element: <DiaryEmotionPage />,
+        },
+    ],
     {
-        path: '/',
-        element: <DiaryHomePage />,
-    },
-    {
-        path: '/detail/:id',
-        element: <DiaryDetailPage />,
-    },
-    {
-        path: '/emotions',
-        element: <DiaryEmotionLinkPage />,
-    },
-    {
-        path: '/emotions/:emotion',
-        element: <DiaryEmotionPage />,
-    },
-])
+        future: {
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+        },
+    }
+)
 
 export const DiaryRouter = () => <RouterProvider router={diaryRouter} />

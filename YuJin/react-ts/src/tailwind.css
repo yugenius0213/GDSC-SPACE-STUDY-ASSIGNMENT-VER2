@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    .btn {
+        @apply cursor-pointer rounded-lg border border-transparent;
+    }
+}
+@layer components {
+    .gray-btn {
+        @apply text-primary-gray bg-primary-lightgray;
+    }
+    .gray-btn:hover {
+        @apply text-primary-darkgray border-primary-darkgray;
+    }
+    .green-btn {
+        @apply text-primary-green bg-primary-lightgreen hover:border-primary-green hover:text-primary-green;
+    }
+    .blue-btn {
+        @apply text-primary-blue bg-primary-lightblue hover:border-primary-blue hover:text-primary-blue;
+    }
+    .red-btn {
+        @apply bg-primary-lightred text-primary-red hover:border-primary-red hover:text-primary-red;
+    }
+}
