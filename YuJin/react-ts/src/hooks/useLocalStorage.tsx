@@ -5,6 +5,7 @@ const useLocalStorage = (diary: Diary[]) => {
 }
 export function updateDiaryStorage() {
     const updateDiaries = useDiaryUpdate()
+
     const addDiary = (newDiary: Omit<Diary, 'views'>) => {
         const initialView = 1
         updateDiaries((prev) => {
@@ -23,5 +24,15 @@ export function updateDiaryStorage() {
         })
     }
 
-    return { addDiary, removeDiary }
+    const updateDiary = (diaryId: string, updateDiary: Diary) => {
+        updateDiaries((prev) => {
+            const viewedDiary = prev.find(({ id }) => id !== diaryId)
+            if (!viewedDiary) return prev
+            const updatedDiary = prev.map((diary) => (diary.id === diaryId ? updateDiary : diary))
+            useLocalStorage(updatedDiary)
+            return updatedDiary
+        })
+    }
+
+    return { addDiary, removeDiary, updateDiary }
 }
