@@ -26,7 +26,7 @@ export function updateDiaryStorage() {
 
     const updateDiary = (diaryId: string, updateDiary: Diary) => {
         updateDiaries((prev) => {
-            const viewedDiary = prev.find(({ id }) => id !== diaryId)
+            const viewedDiary = prev.find(({ id }) => id === diaryId)
             if (!viewedDiary) return prev
             const updatedDiary = prev.map((diary) => (diary.id === diaryId ? updateDiary : diary))
             useLocalStorage(updatedDiary)
