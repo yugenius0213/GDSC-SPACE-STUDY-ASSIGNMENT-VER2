@@ -1,26 +1,34 @@
-import { useParams, useNavigate } from 'react-router-dom'
-import { useDiaryValue } from '../../../provider/Diary'
-import { Diary } from '../../../interface/diary'
-import { Link } from '../../../components/Link'
-import { useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDiaryValue } from '../../../provider/Diary';
+import { Diary } from '../../../interface/diary';
+import { Link } from '../../../components/Link';
+import { useEffect, useRef } from 'react';
 
 type DiaryDetailPageParams = {
-  id: string
-}
+  id: string;
+};
 
 export default function DiaryDetailPage() {
+  const { id } = useParams<DiaryDetailPageParams>();
+  const navigate = useNavigate();
+  const { diaries, removeDiary, incrementDiaryView } = useDiaryValue();
+  const hasIncremented = useRef(false);
 
-  const { id } = useParams<DiaryDetailPageParams>()
-  const navigate = useNavigate()
+  const diary: Diary | undefined = diaries.find((d: Diary) => d.id === id);
 
-  const { diaries, removeDiary } = useDiaryValue()
+  useEffect(() => {
+    if (diary && !hasIncremented.current) {
+        hasIncremented.current = true;
+      console.log('Incrementing view for diary:', diary.id);
+      incrementDiaryView(diary.id);
+    }
+  }, [diary?.id, incrementDiaryView]);
 
-  const diary: Diary | undefined = diaries.find((d: Diary) => d.id === id)
   if (!diary) {
-    return <div>일기를 찾을 수 없습니다.</div>
+    return <div>일기를 찾을 수 없습니다.</div>;
   }
 
-  const { title, content, date, emotion, weather } = diary
+  const { title, content, date, emotion, weather } = diary;
   const formattedDate =
     date instanceof Date
       ? date.toLocaleDateString('ko-KR', {
@@ -29,16 +37,12 @@ export default function DiaryDetailPage() {
           day: 'numeric',
           weekday: 'long'
         })
-      : date
+      : date;
 
   const handleDelete = () => {
-    removeDiary(diary.id)
-    navigate('/')
-  }
-
-  useEffect(() => {
-    
-  }, [])
+    removeDiary(diary.id);
+    navigate('/');
+  };
 
   return (
     <div className="min-h-screen max-h-screen h-screen w-full bg-white flex items-center justify-center">
@@ -98,5 +102,5 @@ export default function DiaryDetailPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
