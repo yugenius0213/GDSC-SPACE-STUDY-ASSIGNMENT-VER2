@@ -13,10 +13,7 @@ import {
 } from './constants'
 import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants'
 import { ROUTE_TYPE } from './constants'
-<<<<<<< HEAD
 
-=======
->>>>>>> 0849dca (refactor: add type for readability)
 type SavebuttonProps = {
     onClick: () => void
 }
