@@ -7,7 +7,6 @@ type DiaryTableProps = {
     diary: Diary
     handleCheckbox: ({ id }: { id: Diary['id'] }) => void
 }
-
 export function DiaryBar({ diary, handleCheckbox }: DiaryTableProps) {
     return (
         <Link
