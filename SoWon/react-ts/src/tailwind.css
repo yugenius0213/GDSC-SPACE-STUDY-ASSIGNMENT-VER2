@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    .btn {
+        @apply flex items-center justify-center rounded-lg border border-transparent active:translate-y-[1px] p-2 cursor-pointer transition-colors ease-in;
+    }
+}
+
+@layer components {
+    .btn-valid {
+        @apply bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600;
+    }
+
+    .btn-invalid {
+        @apply bg-gray-100 text-gray-400 hover:border-gray-600 hover:text-gray-600;
+    }
+
+    .btn-emotion {
+        @apply bg-emerald-100 text-emerald-600 hover:border-emerald-600 hover:text-emerald-600 px-1.5 py-0.5 text-sm;
+    }
+
+    .btn-weather {
+        @apply bg-blue-100 text-blue-600 hover:border-blue-600 hover:text-blue-600 px-1.5 py-0.5 text-sm;
+    }
+
+    .diary-input {
+        @apply p-2 mt-4 rounded-md transition ring-gray-100 focus:outline-none focus:ring-1 placeholder:text-gray-400;
+    }
+}
