@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { Diary } from '../../interface/diary'
 import { dateFormatting } from '../../app/utils/dateFormat'
-import { ROUTE_TYPE } from '../../app/constants/routes'
 
 export function DiaryTable({
     diary,
@@ -12,7 +11,7 @@ export function DiaryTable({
 }) {
     return (
         <Link
-            to={`${ROUTE_TYPE.DIARY}/${diary.id}`}
+            to={`/detail/${diary.id}`}
             key={diary.id}
             className="w-full border border-x-primary-lightgray p-2 flex flex-row rounded-lg items-center justify-between"
         >
