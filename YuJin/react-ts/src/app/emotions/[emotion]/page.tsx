@@ -5,7 +5,7 @@ import { Diary } from '../../../interface/diary'
 import { useDiaryValue } from '../../../provider/Diary'
 import { useState } from 'react'
 import { updateDiaryStorage } from '../../../hooks/useLocalStorage'
-import { DiaryTable } from '../../../components/diaryViewer/diaryTable'
+import { DiaryBar } from '../../../components/diaryViewer/DiaryBar'
 import { DIARY_NOT_SELECTED, NO_DIARY_IN_EMOTIONLIST } from '../../constants'
 
 type EmotionPageParams = {
@@ -68,7 +68,7 @@ export default function EmotionPage() {
             {isDiaryExsists ? (
                 <>
                     {filteredDiaries.map((diary) => (
-                        <DiaryTable diary={diary} key={diary.id} handleCheckbox={handleCheckbox} />
+                        <DiaryBar diary={diary} key={diary.id} handleCheckbox={handleCheckbox} />
                     ))}
 
                     {isDiarySelected ? (
