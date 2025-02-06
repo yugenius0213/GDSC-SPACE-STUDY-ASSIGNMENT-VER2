@@ -3,24 +3,25 @@ import DiaryHomePage from '../app/page'
 import DiaryDetailPage from '../app/detail/[id]/page'
 import DiaryEmotionLinkPage from '../app/emotions/page'
 import DiaryEmotionPage from '../app/emotions/[emotion]/page'
+import { ROUTE_TYPE } from '../app/constants/routes'
 
 export type DiaryRouterPath = '/' | `/detail/${string}` | '/emotions' | `/emotions/${string}`
 const diaryRouter = createBrowserRouter(
     [
         {
-            path: '/',
+            path: ROUTE_TYPE.HOME,
             element: <DiaryHomePage />,
         },
         {
-            path: '/detail/:id',
+            path: ROUTE_TYPE.DIARY_DETAIL,
             element: <DiaryDetailPage />,
         },
         {
-            path: '/emotions',
+            path: ROUTE_TYPE.EMOTIONS,
             element: <DiaryEmotionLinkPage />,
         },
         {
-            path: '/emotions/:emotion',
+            path: ROUTE_TYPE.EMOTIONS_DETAIL,
             element: <DiaryEmotionPage />,
         },
     ],

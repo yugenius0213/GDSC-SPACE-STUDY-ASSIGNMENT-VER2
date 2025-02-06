@@ -4,14 +4,33 @@ import { Diary } from '../interface/diary'
 import { useDiaryValue } from '../provider/Diary'
 import { Link } from 'react-router-dom'
 import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
-import { minContentLength, minTitleLength } from './constants/contraints'
+import { minContentLength, minTitleLength } from './constants'
 import {
     DIARY_CONTENT_PLACEHOLDER,
     DIARY_TITLE_PLACEHOLDER,
     INVALID_SAVE_BUTTON_TEXT,
     VALID_SAVE_BUTTON_TEXT,
-} from './constants/diaryInputs'
-import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants/diaryOutput'
+} from './constants'
+import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants'
+import { ROUTE_TYPE } from './constants'
+
+type SavebuttonProps = {
+    onClick: () => void
+}
+function SaveButton({ onClick }: SavebuttonProps) {
+    return (
+        <button className={`w-full btn green-btn py-2 text-lg transition-colors ease-in`} onClick={onClick}>
+            {VALID_SAVE_BUTTON_TEXT}
+        </button>
+    )
+}
+function DisabledSaveButton() {
+    return (
+        <button className={`w-full btn gray-btn py-2 text-lg transition-colors ease-in`} disabled>
+            {INVALID_SAVE_BUTTON_TEXT}
+        </button>
+    )
+}
 
 function DiaryWriter() {
     const emotions: Diary['emotion'][] = ['bad', 'soso', 'good', 'great', 'awesome']
@@ -93,12 +112,7 @@ function DiaryWriter() {
                 value={content}
             ></textarea>
 
-            <button
-                className={`w-full btn ${isValid ? 'green-btn' : 'gray-btn'} py-2 text-lg transition-colors ease-in`}
-                onClick={saveDiary}
-            >
-                {isValid ? VALID_SAVE_BUTTON_TEXT : INVALID_SAVE_BUTTON_TEXT}
-            </button>
+            {isValid ? <SaveButton onClick={saveDiary} /> : <DisabledSaveButton />}
         </div>
     )
 }
@@ -119,7 +133,7 @@ function DiaryViewer() {
                 <div className="text-primary-gray">{EMPTY_DIARY}</div>
             )}
 
-            <Link to="/emotions">
+            <Link to={ROUTE_TYPE.EMOTIONS}>
                 <button className="w-full btn py-2 text-lg green-btn ">{VIEW_EMOTIONS_BUTTON_TEXT}</button>
             </Link>
         </div>
