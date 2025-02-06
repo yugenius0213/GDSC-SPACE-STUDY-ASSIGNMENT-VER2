@@ -1,15 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { Diary } from '../../interface/diary'
 import { dateFormatting } from '../../app/utils/dateFormat'
-import { ROUTE_TYPE } from '../../app/constants/routes'
+import { ROUTE_TYPE } from '../../app/constants'
 
-export function DiaryTable({
-    diary,
-    handleCheckbox,
-}: {
+type DiaryTableProps = {
     diary: Diary
     handleCheckbox: ({ id }: { id: Diary['id'] }) => void
-}) {
+}
+export function DiaryBar({ diary, handleCheckbox }: DiaryTableProps) {
     return (
         <Link
             to={`${ROUTE_TYPE.DIARY}/${diary.id}`}
