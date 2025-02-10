@@ -19,7 +19,6 @@ export default function DiaryDetailPage() {
   useEffect(() => {
     if (diary && !hasIncremented.current) {
         hasIncremented.current = true;
-      console.log('Incrementing view for diary:', diary.id);
       incrementDiaryView(diary.id);
     }
   }, [diary?.id, incrementDiaryView]);
