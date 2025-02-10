@@ -1,10 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { Diary } from '../interface/diary';
 
 interface DiaryContextType {
   diaries: Diary[];
   addDiary: (diary: Diary) => void;
   removeDiary: (id: string) => void;
+  incrementDiaryView: (id: string) => void;
 }
 
 const DiaryContext = createContext<DiaryContextType | undefined>(undefined);
@@ -40,8 +41,18 @@ export const DiaryProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
   };
 
+  const incrementDiaryView = useCallback((id: string) => {
+    setDiaries((prev) => {
+      const updated = prev.map((diary) =>
+        diary.id === id ? { ...diary, views: (diary.views || 0) + 1 } : diary
+      );
+      localStorage.setItem('diaries', JSON.stringify(updated));
+      return updated;
+    });
+  }, []);
+
   return (
-    <DiaryContext.Provider value={{ diaries, addDiary, removeDiary }}>
+    <DiaryContext.Provider value={{ diaries, addDiary, removeDiary, incrementDiaryView }}>
       {children}
     </DiaryContext.Provider>
   );
