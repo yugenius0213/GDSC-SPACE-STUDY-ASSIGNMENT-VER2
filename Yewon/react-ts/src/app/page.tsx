@@ -26,8 +26,6 @@ function saveDiary(title: string, contents: string, selectedEmotion: Emotion, se
     localStorage.setItem(DIARYKEY, JSON.stringify([...storedData, newDiaryObj]))
 }
 
-
-
 const DiaryWriter = () => {
     const [title, setTitle] = useState('')
     const [contents, setContents] = useState('')
