@@ -3,7 +3,7 @@ import { updateDiaryStorage } from '../hooks/useLocalStorage'
 import { Diary } from '../interface/diary'
 import { useDiaryValue } from '../provider/Diary'
 import { Link } from 'react-router-dom'
-import { DiaryViewerBox } from '../components/diaryViewer/diaryViewerBox'
+import { DiaryViewerBox } from '../components/diaryViewer/DiaryViewerBox'
 import { minContentLength, minTitleLength } from './constants'
 import {
     DIARY_CONTENT_PLACEHOLDER,
