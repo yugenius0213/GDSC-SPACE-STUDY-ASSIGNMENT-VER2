@@ -13,10 +13,14 @@ import {
 } from './constants'
 import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './constants'
 import { ROUTE_TYPE } from './constants'
-
+import tw from 'twin.macro'
+import styled from 'styled-components'
 type SavebuttonProps = {
     onClick: () => void
 }
+const EmptyDiaryDiv = styled.div`
+    ${tw`text-primary-gray`}
+`
 function SaveButton({ onClick }: SavebuttonProps) {
     return (
         <button className={`w-full btn green-btn py-2 text-lg transition-colors ease-in`} onClick={onClick}>
