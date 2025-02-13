@@ -15,24 +15,24 @@ import { DIARY_LIST_TITLE, EMPTY_DIARY, VIEW_EMOTIONS_BUTTON_TEXT } from './cons
 import { ROUTE_TYPE } from './constants'
 import tw from 'twin.macro'
 import styled from 'styled-components'
+
 type SavebuttonProps = {
     onClick: () => void
+    isValid: boolean
 }
-const EmptyDiaryDiv = styled.div`
-    ${tw`text-primary-gray`}
+
+const SaveButton = styled.button<{ $isValid: boolean }>`
+    ${tw`w-full py-2 text-lg transition-colors ease-in`}
+    ${({ $isValid }) =>
+        $isValid
+            ? tw`text-primary-green bg-primary-lightgreen hover:border-primary-green hover:text-primary-green`
+            : tw`text-primary-gray bg-primary-lightgray hover:border-primary-gray hover:text-primary-gray`}
 `
-function SaveButton({ onClick }: SavebuttonProps) {
+function SaveDiaryButton({ onClick, isValid }: SavebuttonProps) {
     return (
-        <button className={`w-full btn green-btn py-2 text-lg transition-colors ease-in`} onClick={onClick}>
-            {VALID_SAVE_BUTTON_TEXT}
-        </button>
-    )
-}
-function DisabledSaveButton() {
-    return (
-        <button className={`w-full btn gray-btn py-2 text-lg transition-colors ease-in`} disabled>
-            {INVALID_SAVE_BUTTON_TEXT}
-        </button>
+        <SaveButton className="btn" $isValid={isValid} onClick={onClick}>
+            {isValid ? VALID_SAVE_BUTTON_TEXT : INVALID_SAVE_BUTTON_TEXT}
+        </SaveButton>
     )
 }
 
@@ -116,7 +116,7 @@ function DiaryWriter() {
                 value={content}
             ></textarea>
 
-            {isValid ? <SaveButton onClick={saveDiary} /> : <DisabledSaveButton />}
+            <SaveDiaryButton onClick={isValid ? saveDiary : () => {}} isValid={isValid} />
         </div>
     )
 }
